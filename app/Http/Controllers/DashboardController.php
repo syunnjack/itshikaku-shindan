@@ -32,6 +32,11 @@ class DashboardController extends Controller
         $correctAttempts = $attempts->where('is_correct', true)->count();
         $accuracyRate = $totalAttempts > 0 ? round($correctAttempts / $totalAttempts * 100) : 0;
         $incorrectReviewCount = $attempts->where('is_correct', false)->pluck('question_id')->unique()->count();
+        $dueReviewCount = $attempts
+            ->filter(fn (QuestionAttempt $attempt) => $attempt->review_due_at !== null && $attempt->review_due_at->isPast())
+            ->pluck('question_id')
+            ->unique()
+            ->count();
         $recentAttempts = $attempts->take(10);
 
         return view('dashboard', compact(
@@ -41,6 +46,7 @@ class DashboardController extends Controller
             'correctAttempts',
             'accuracyRate',
             'incorrectReviewCount',
+            'dueReviewCount',
             'recentAttempts'
         ));
     }
@@ -52,6 +58,11 @@ class DashboardController extends Controller
             $attemptCount = $certificationAttempts->count();
             $correctCount = $certificationAttempts->where('is_correct', true)->count();
             $incorrectCount = $certificationAttempts->where('is_correct', false)->pluck('question_id')->unique()->count();
+            $dueReviewCount = $certificationAttempts
+                ->filter(fn (QuestionAttempt $attempt) => $attempt->review_due_at !== null && $attempt->review_due_at->isPast())
+                ->pluck('question_id')
+                ->unique()
+                ->count();
 
             return [
                 'slug' => $slug,
@@ -62,6 +73,7 @@ class DashboardController extends Controller
                 'correct_count' => $correctCount,
                 'accuracy_rate' => $attemptCount > 0 ? round($correctCount / $attemptCount * 100) : null,
                 'incorrect_review_count' => $incorrectCount,
+                'due_review_count' => $dueReviewCount,
             ];
         })->values();
     }

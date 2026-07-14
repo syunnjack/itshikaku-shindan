@@ -17,12 +17,16 @@ class QuestionAttempt extends Model
         'user_answer',
         'correct_answer',
         'is_correct',
+        'review_interval_days',
+        'review_due_at',
     ];
 
     protected function casts(): array
     {
         return [
             'is_correct' => 'boolean',
+            'review_interval_days' => 'integer',
+            'review_due_at' => 'datetime',
         ];
     }
 

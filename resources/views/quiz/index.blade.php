@@ -73,8 +73,8 @@
         @endauth
     @else
         @if (!empty($isReviewMode))
-            <p class="lead">現在、{{ $currentCertification['name'] }} で復習対象の不正解問題はありません。</p>
-            <p>まず通常の問題に回答すると、間違えた問題がここに表示されます。</p>
+            <p class="lead">現在、{{ $currentCertification['name'] }} で今日復習すべき問題はありません。</p>
+            <p>通常問題に回答すると、正誤に応じて次回復習日が自動で設定されます。</p>
             <div class="actions">
                 <a class="button" href="{{ route('quiz.index', ['certification' => $currentSlug]) }}">通常問題へ進む</a>
             </div>

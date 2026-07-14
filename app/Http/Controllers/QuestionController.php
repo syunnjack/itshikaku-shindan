@@ -65,16 +65,16 @@ class QuestionController extends Controller
                 ->with('status', '無料で回答できる5問に到達しました。有料会員になると復習を継続できます。');
         }
 
-        $incorrectQuestionIds = QuestionAttempt::query()
+        $reviewQuestionIds = QuestionAttempt::query()
             ->where('user_id', $request->user()->id)
             ->where('certification_slug', $currentSlug)
-            ->where('is_correct', false)
+            ->where('review_due_at', '<=', now())
             ->latest()
             ->pluck('question_id')
             ->unique();
 
         $question = Question::where('certification_slug', $currentSlug)
-            ->whereIn('id', $incorrectQuestionIds)
+            ->whereIn('id', $reviewQuestionIds)
             ->inRandomOrder()
             ->first();
 
@@ -128,6 +128,8 @@ class QuestionController extends Controller
             $answeredCount++;
         }
 
+        $reviewIntervalDays = $isCorrect ? 3 : 1;
+
         QuestionAttempt::create([
             'user_id' => $request->user()->id,
             'question_id' => $question->id,
@@ -135,6 +137,8 @@ class QuestionController extends Controller
             'user_answer' => $userAnswer,
             'correct_answer' => $question->answer,
             'is_correct' => $isCorrect,
+            'review_interval_days' => $reviewIntervalDays,
+            'review_due_at' => now()->addDays($reviewIntervalDays),
         ]);
 
         $remainingFreeQuestions = max(0, $freeQuestionLimit - $answeredCount);

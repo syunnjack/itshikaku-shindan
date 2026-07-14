@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Question;
+use App\Models\QuestionAttempt;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -61,5 +62,30 @@ class MembershipFlowTest extends TestCase
 
         $response->assertOk();
         $response->assertSee('有料会員');
+    }
+
+    public function test_answer_creates_review_schedule(): void
+    {
+        $user = User::factory()->create();
+        $question = Question::create([
+            'certification_slug' => 'it-passport',
+            'certification_name' => 'ITパスポート試験',
+            'sort_order' => 1,
+            'question' => 'CPUは中央処理装置である。',
+            'answer' => '○',
+            'explanation' => 'CPUはCentral Processing Unitの略です。',
+        ]);
+
+        $response = $this->actingAs($user)->post('/quiz/it-passport/check', [
+            'id' => $question->id,
+            'answer' => '×',
+        ]);
+
+        $response->assertOk();
+        $attempt = QuestionAttempt::first();
+
+        $this->assertFalse($attempt->is_correct);
+        $this->assertSame(1, $attempt->review_interval_days);
+        $this->assertNotNull($attempt->review_due_at);
     }
 }

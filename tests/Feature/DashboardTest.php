@@ -38,6 +38,8 @@ class DashboardTest extends TestCase
             'user_answer' => '×',
             'correct_answer' => '○',
             'is_correct' => false,
+            'review_interval_days' => 1,
+            'review_due_at' => now()->subDay(),
         ]);
 
         $response = $this->actingAs($user)->get('/dashboard');
@@ -45,6 +47,7 @@ class DashboardTest extends TestCase
         $response->assertOk();
         $response->assertSee('学習ダッシュボード');
         $response->assertSee('復習対象');
+        $response->assertSee('今日の復習');
         $response->assertSee('ITパスポート');
     }
 }
