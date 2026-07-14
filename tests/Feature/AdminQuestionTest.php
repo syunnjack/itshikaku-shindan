@@ -19,16 +19,24 @@ class AdminQuestionTest extends TestCase
         $response = $this->actingAs($admin)->post('/admin/questions', [
             'certification_slug' => 'it-passport',
             'sort_order' => 99,
+            'format' => 'multiple_choice',
+            'is_trial' => '1',
             'question' => 'テスト問題です。',
-            'answer' => '○',
-            'explanation' => 'テスト解説です。',
+            'choice_a' => '選択肢ア',
+            'choice_i' => '選択肢イ',
+            'choice_u' => '選択肢ウ',
+            'choice_e' => '選択肢エ',
+            'answer' => 'ウ',
+            'explanation' => 'テスト解説です。詳しく理解できます。',
         ]);
 
         $response->assertRedirect('/admin/questions?certification=it-passport');
         $this->assertDatabaseHas('questions', [
             'certification_slug' => 'it-passport',
             'question' => 'テスト問題です。',
-            'answer' => '○',
+            'answer' => 'ウ',
+            'format' => 'multiple_choice',
+            'is_trial' => true,
         ]);
     }
 

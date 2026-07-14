@@ -6,6 +6,7 @@ use App\Models\Question;
 use App\Models\QuestionAttempt;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class QuestionController extends Controller
@@ -27,7 +28,17 @@ class QuestionController extends Controller
                 ->with('status', '無料で回答できる5問に到達しました。有料会員になると学習を継続できます。');
         }
 
-        $question = Question::where('certification_slug', $currentSlug)
+        $shouldUseTrialQuestion = ! $request->user() || (! $isPaidMember && $remainingFreeQuestions > 0);
+        $question = null;
+
+        if ($shouldUseTrialQuestion) {
+            $question = Question::where('certification_slug', $currentSlug)
+                ->where('is_trial', true)
+                ->inRandomOrder()
+                ->first();
+        }
+
+        $question ??= Question::where('certification_slug', $currentSlug)
             ->inRandomOrder()
             ->first();
 
@@ -39,7 +50,8 @@ class QuestionController extends Controller
             'answeredCount',
             'freeQuestionLimit',
             'remainingFreeQuestions',
-            'isPaidMember'
+            'isPaidMember',
+            'shouldUseTrialQuestion'
         ));
     }
 
@@ -121,6 +133,19 @@ class QuestionController extends Controller
         $question = Question::where('certification_slug', $currentSlug)
             ->findOrFail($validated['id']);
         $userAnswer = $validated['answer'];
+
+        if ($question->isMultipleChoice() && ! array_key_exists($userAnswer, $question->choices)) {
+            throw ValidationException::withMessages([
+                'answer' => '表示された選択肢から回答してください。',
+            ]);
+        }
+
+        if (! $question->isMultipleChoice() && ! in_array($userAnswer, ['○', '×'], true)) {
+            throw ValidationException::withMessages([
+                'answer' => '○または×で回答してください。',
+            ]);
+        }
+
         $isCorrect = $question->answer === $userAnswer;
 
         if (! $isPaidMember) {

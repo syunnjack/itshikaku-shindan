@@ -8,18 +8,30 @@
 @section('content')
     <h1>{{ $currentCertification['short_name'] }} 結果</h1>
 
-    <p>あなたの回答: <strong>{{ $userAnswer }}</strong></p>
+    <p>
+        あなたの回答: <strong>{{ $userAnswer }}</strong>
+        @if ($question->isMultipleChoice())
+            <span class="answer-detail">{{ $question->answerLabel($userAnswer) }}</span>
+        @endif
+    </p>
 
     <div class="result-box {{ $isCorrect ? '' : 'incorrect' }}" role="status" aria-live="polite">
         @if ($isCorrect)
             <p><strong>正解です。</strong></p>
         @else
-            <p><strong>不正解です。</strong> 正解は {{ $question->answer }} でした。</p>
+            <p>
+                <strong>不正解です。</strong>
+                正解は {{ $question->answer }}
+                @if ($question->isMultipleChoice())
+                    <span class="answer-detail">{{ $question->answerLabel() }}</span>
+                @endif
+                でした。
+            </p>
         @endif
 
         @if (!empty($question->explanation))
             <h2>解説</h2>
-            <p>{{ $question->explanation }}</p>
+            <p>{!! nl2br(e($question->explanation)) !!}</p>
         @endif
     </div>
 

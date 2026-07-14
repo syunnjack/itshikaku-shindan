@@ -15,7 +15,7 @@
         'educationalLevel' => $currentCertification['level'],
         'educationalUse' => 'exam preparation',
         'learningResourceType' => 'quiz',
-        'teaches' => [$currentCertification['name'], '本試験頻出論点', '正誤判断'],
+        'teaches' => [$currentCertification['name'], '本試験頻出論点', '選択式問題', '詳しい解説'],
     ];
 @endphp
 
@@ -49,7 +49,11 @@
     </div>
 
     @if ($question)
-        <p class="lead">{{ !empty($isReviewMode) ? '過去に間違えた問題を再確認して、弱点をつぶしてください。' : '本試験で問われる判断軸を意識して、○か×を即答してください。' }}</p>
+        <p class="lead">{{ !empty($isReviewMode) ? '過去に間違えた問題を再確認して、弱点をつぶしてください。' : '本試験で問われる判断軸を意識して、最も適切な選択肢を選んでください。' }}</p>
+
+        @if (!empty($shouldUseTrialQuestion) && $question->is_trial)
+            <div class="notice" role="status">無料体験の5問は、本試験形式に近い選択式問題と詳しい解説で、購入前に学習効果を確認できます。</div>
+        @endif
 
         @auth
             <form method="POST" action="{{ route('quiz.check', ['certification' => $currentSlug]) }}" aria-label="{{ $currentCertification['name'] }}の回答フォーム">
@@ -59,10 +63,21 @@
                 @if (!empty($isReviewMode))
                     <input type="hidden" name="review" value="1">
                 @endif
-                <div class="answer-form">
-                    <button type="submit" name="answer" value="○" class="answer-button" aria-label="正しい">○</button>
-                    <button type="submit" name="answer" value="×" class="answer-button" aria-label="間違い">×</button>
-                </div>
+                @if ($question->isMultipleChoice())
+                    <div class="choice-form">
+                        @foreach ($question->choices as $key => $choice)
+                            <button type="submit" name="answer" value="{{ $key }}" class="choice-button">
+                                <span class="choice-key">{{ $key }}</span>
+                                <span>{{ $choice }}</span>
+                            </button>
+                        @endforeach
+                    </div>
+                @else
+                    <div class="answer-form">
+                        <button type="submit" name="answer" value="○" class="answer-button" aria-label="正しい">○</button>
+                        <button type="submit" name="answer" value="×" class="answer-button" aria-label="間違い">×</button>
+                    </div>
+                @endif
             </form>
         @else
             <p class="question-text">{{ $question->question }}</p>

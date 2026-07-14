@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Question;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class AdminQuestionController extends Controller
@@ -35,6 +36,7 @@ class AdminQuestionController extends Controller
         return view('admin.questions.form', [
             'question' => new Question([
                 'certification_slug' => $selectedCertification,
+                'format' => 'true_false',
                 'answer' => '○',
                 'sort_order' => 0,
             ]),
@@ -95,13 +97,56 @@ class AdminQuestionController extends Controller
 
     private function validatedQuestion(Request $request): array
     {
-        return $request->validate([
+        $validated = $request->validate([
             'certification_slug' => ['required', 'string', 'in:' . implode(',', array_keys(config('certifications')))],
             'sort_order' => ['required', 'integer', 'min:0'],
+            'format' => ['required', 'string', 'in:true_false,multiple_choice'],
+            'is_trial' => ['nullable', 'boolean'],
             'question' => ['required', 'string', 'max:1000'],
-            'answer' => ['required', 'string', 'in:○,×'],
-            'explanation' => ['nullable', 'string', 'max:2000'],
+            'answer' => ['required', 'string', 'in:○,×,ア,イ,ウ,エ'],
+            'choice_a' => ['nullable', 'string', 'max:500'],
+            'choice_i' => ['nullable', 'string', 'max:500'],
+            'choice_u' => ['nullable', 'string', 'max:500'],
+            'choice_e' => ['nullable', 'string', 'max:500'],
+            'explanation' => ['nullable', 'string', 'max:4000'],
         ]);
+
+        $validated['is_trial'] = $request->boolean('is_trial');
+
+        if ($validated['format'] === 'multiple_choice') {
+            $choices = [
+                'ア' => $validated['choice_a'] ?? null,
+                'イ' => $validated['choice_i'] ?? null,
+                'ウ' => $validated['choice_u'] ?? null,
+                'エ' => $validated['choice_e'] ?? null,
+            ];
+
+            if (collect($choices)->contains(fn ($choice) => blank($choice))) {
+                throw ValidationException::withMessages([
+                    'choices' => '選択式問題ではア・イ・ウ・エの選択肢をすべて入力してください。',
+                ]);
+            }
+
+            if (! array_key_exists($validated['answer'], $choices)) {
+                throw ValidationException::withMessages([
+                    'answer' => '選択式問題の正解はア・イ・ウ・エから選んでください。',
+                ]);
+            }
+
+            $validated['choices'] = $choices;
+        } else {
+            if (! in_array($validated['answer'], ['○', '×'], true)) {
+                throw ValidationException::withMessages([
+                    'answer' => '○×問題の正解は○または×を選んでください。',
+                ]);
+            }
+
+            $validated['choices'] = null;
+        }
+
+        unset($validated['choice_a'], $validated['choice_i'], $validated['choice_u'], $validated['choice_e']);
+
+        return $validated;
     }
 
     private function authorizeAdmin(Request $request): void

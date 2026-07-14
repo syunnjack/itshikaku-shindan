@@ -110,6 +110,11 @@
         .button.secondary { background: #e9f3f1; color: var(--text); }
         .answer-form { display: flex; justify-content: center; gap: 20px; margin-top: 24px; flex-wrap: wrap; }
         .answer-button { width: 88px; height: 88px; font-size: 2rem; }
+        .choice-form { display: grid; gap: 12px; margin-top: 24px; }
+        .choice-button { width: 100%; min-height: 58px; justify-content: flex-start; gap: 12px; padding: 14px 16px; text-align: left; background: #f0fdfa; color: var(--text); border: 1px solid var(--border); }
+        .choice-button:hover { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+        .choice-key { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 32px; width: 32px; height: 32px; border-radius: 999px; background: var(--accent); color: #fff; font-weight: 800; }
+        .answer-detail { display: inline-block; margin-left: 8px; color: var(--muted); }
         .question-text { font-size: 1.25rem; font-weight: 700; }
         .result-box { border-radius: 8px; margin-top: 20px; padding: 20px; background: #ecfdf5; border: 1px solid #a7f3d0; }
         .result-box.incorrect { background: #fff7ed; border-color: #fed7aa; }

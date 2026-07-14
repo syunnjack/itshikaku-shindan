@@ -35,6 +35,7 @@
                 <tr>
                     <th>資格</th>
                     <th>順序</th>
+                    <th>形式</th>
                     <th>問題</th>
                     <th>答え</th>
                     <th>操作</th>
@@ -45,6 +46,7 @@
                     <tr>
                         <td>{{ config('certifications.' . $question->certification_slug . '.short_name', $question->certification_slug) }}</td>
                         <td>{{ $question->sort_order }}</td>
+                        <td>{{ $question->format === 'multiple_choice' ? '4択' : '○×' }}{{ $question->is_trial ? ' / 無料' : '' }}</td>
                         <td>{{ $question->question }}</td>
                         <td>{{ $question->answer }}</td>
                         <td>

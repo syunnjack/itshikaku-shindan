@@ -64,6 +64,43 @@ class MembershipFlowTest extends TestCase
         $response->assertSee('有料会員');
     }
 
+    public function test_free_member_sees_trial_multiple_choice_question_first(): void
+    {
+        $user = User::factory()->create();
+
+        Question::create([
+            'certification_slug' => 'it-passport',
+            'certification_name' => 'ITパスポート試験',
+            'sort_order' => 1,
+            'question' => '通常の○×問題です。',
+            'answer' => '○',
+            'explanation' => '通常問題です。',
+        ]);
+
+        Question::create([
+            'certification_slug' => 'it-passport',
+            'certification_name' => 'ITパスポート試験',
+            'sort_order' => 101,
+            'format' => 'multiple_choice',
+            'choices' => [
+                'ア' => '選択肢A',
+                'イ' => '選択肢B',
+                'ウ' => '選択肢C',
+                'エ' => '選択肢D',
+            ],
+            'is_trial' => true,
+            'question' => '本試験形式の無料体験問題です。',
+            'answer' => 'ウ',
+            'explanation' => '詳しい解説です。',
+        ]);
+
+        $response = $this->actingAs($user)->get('/quiz/it-passport');
+
+        $response->assertOk();
+        $response->assertSee('本試験形式の無料体験問題です。');
+        $response->assertSee('選択肢C');
+    }
+
     public function test_answer_creates_review_schedule(): void
     {
         $user = User::factory()->create();
