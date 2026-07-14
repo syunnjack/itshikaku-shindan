@@ -7,16 +7,36 @@ use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
-    public function index(?string $certification = null)
+    public function index(Request $request, ?string $certification = null)
     {
         $certifications = $this->certifications();
         $currentSlug = $this->resolveCertificationSlug($certification);
         $currentCertification = $certifications[$currentSlug];
+        $answeredCount = $this->answeredCount($request);
+        $freeQuestionLimit = $this->freeQuestionLimit();
+        $isPaidMember = $this->isPaidMember($request);
+        $remainingFreeQuestions = max(0, $freeQuestionLimit - $answeredCount);
+
+        if (! $isPaidMember && $remainingFreeQuestions === 0) {
+            return redirect()
+                ->route('membership', ['certification' => $currentSlug])
+                ->with('status', '無料で回答できる5問に到達しました。有料会員になると学習を継続できます。');
+        }
+
         $question = Question::where('certification_slug', $currentSlug)
             ->inRandomOrder()
             ->first();
 
-        return view('quiz.index', compact('certifications', 'currentSlug', 'currentCertification', 'question'));
+        return view('quiz.index', compact(
+            'certifications',
+            'currentSlug',
+            'currentCertification',
+            'question',
+            'answeredCount',
+            'freeQuestionLimit',
+            'remainingFreeQuestions',
+            'isPaidMember'
+        ));
     }
 
     public function check(Request $request, ?string $certification = null)
@@ -24,18 +44,47 @@ class QuestionController extends Controller
         $certifications = $this->certifications();
         $currentSlug = $this->resolveCertificationSlug($certification);
         $currentCertification = $certifications[$currentSlug];
+        $answeredCount = $this->answeredCount($request);
+        $freeQuestionLimit = $this->freeQuestionLimit();
+        $isPaidMember = $this->isPaidMember($request);
 
         $validated = $request->validate([
             'id' => ['required', 'integer', 'exists:questions,id'],
             'answer' => ['required', 'string'],
         ]);
 
+        if (! $isPaidMember && $answeredCount >= $freeQuestionLimit) {
+            return redirect()
+                ->route('membership', ['certification' => $currentSlug])
+                ->with('status', '無料で回答できる5問に到達しました。有料会員になると学習を継続できます。');
+        }
+
         $question = Question::where('certification_slug', $currentSlug)
             ->findOrFail($validated['id']);
         $userAnswer = $validated['answer'];
         $isCorrect = $question->answer === $userAnswer;
 
-        return view('quiz.result', compact('certifications', 'currentSlug', 'currentCertification', 'isCorrect', 'question', 'userAnswer'));
+        if (! $isPaidMember) {
+            $answeredCount++;
+            $request->session()->put('quiz_answered_count', $answeredCount);
+        }
+
+        $remainingFreeQuestions = max(0, $freeQuestionLimit - $answeredCount);
+        $hasReachedFreeLimit = ! $isPaidMember && $remainingFreeQuestions === 0;
+
+        return view('quiz.result', compact(
+            'certifications',
+            'currentSlug',
+            'currentCertification',
+            'isCorrect',
+            'question',
+            'userAnswer',
+            'answeredCount',
+            'freeQuestionLimit',
+            'remainingFreeQuestions',
+            'isPaidMember',
+            'hasReachedFreeLimit'
+        ));
     }
 
     private function certifications(): array
@@ -59,5 +108,20 @@ class QuestionController extends Controller
         abort_unless(array_key_exists($certification, $certifications), 404);
 
         return $certification;
+    }
+
+    private function answeredCount(Request $request): int
+    {
+        return (int) $request->session()->get('quiz_answered_count', 0);
+    }
+
+    private function freeQuestionLimit(): int
+    {
+        return (int) config('membership.free_question_limit', 5);
+    }
+
+    private function isPaidMember(Request $request): bool
+    {
+        return (bool) (config('membership.force_paid_member') || $request->session()->get('is_paid_member', false));
     }
 }

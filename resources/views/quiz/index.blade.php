@@ -25,6 +25,12 @@
     <h1>{{ $currentCertification['name'] }} 本試験対策</h1>
     <p class="lead">{{ $currentCertification['description'] }}</p>
 
+    @if ($isPaidMember)
+        <div class="notice" role="status">有料会員: すべての問題を制限なく利用できます。</div>
+    @else
+        <div class="notice warning" role="status">無料体験中: 残り {{ $remainingFreeQuestions }} 問を無料で回答できます。6問目以降は有料会員限定です。</div>
+    @endif
+
     <h2>同じ分類の資格に切り替える</h2>
     <div class="cert-grid" aria-label="資格切り替え">
         @foreach (collect($certifications)->where('category', $currentCertification['category'])->sortBy('category_rank') as $slug => $certification)

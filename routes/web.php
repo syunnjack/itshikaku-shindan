@@ -15,6 +15,16 @@ Route::get('/about', function () {
     return view('about', compact('certifications'));
 })->name('about');
 
+Route::get('/membership', function () {
+    $certifications = collect(config('certifications'))->sortBy('rank')->all();
+    $certificationSlug = request('certification', 'it-passport');
+    $currentCertification = $certifications[$certificationSlug] ?? $certifications['it-passport'];
+    $answeredCount = (int) session('quiz_answered_count', 0);
+    $freeQuestionLimit = config('membership.free_question_limit');
+
+    return view('membership', compact('certifications', 'currentCertification', 'answeredCount', 'freeQuestionLimit'));
+})->name('membership');
+
 Route::get('/sitemap.xml', function () {
     $urls = [
         ['loc' => route('home'), 'priority' => '1.0'],

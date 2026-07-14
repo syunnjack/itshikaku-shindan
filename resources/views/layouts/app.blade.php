@@ -82,6 +82,8 @@
         p { margin: 0 0 16px; }
         ul { margin: 0 0 16px; padding-left: 1.25rem; }
         .lead { color: var(--muted); font-size: 1.1rem; }
+        .notice { margin: 20px 0; border: 1px solid #99f6e4; border-radius: 8px; padding: 14px 16px; background: #f0fdfa; color: #134e4a; font-weight: 700; }
+        .notice.warning { border-color: #fde68a; background: #fffbeb; color: #713f12; }
         .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 20px 0; }
         .cert-card { display: block; border: 1px solid var(--border); border-radius: 8px; padding: 16px; color: var(--text); text-decoration: none; background: #fbfdfc; }
         .cert-card[aria-current="page"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
@@ -108,6 +110,7 @@
                 <a href="{{ route('quiz.index', ['certification' => 'it-passport']) }}">国家試験</a>
                 <a href="{{ route('quiz.index', ['certification' => 'aws-cloud-practitioner']) }}">ベンダー資格</a>
                 <a href="{{ route('about') }}">学習設計</a>
+                <a href="{{ route('membership') }}">有料会員</a>
                 <a href="{{ route('llms') }}">LLMs.txt</a>
             </div>
         </nav>

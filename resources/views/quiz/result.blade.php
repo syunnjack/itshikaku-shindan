@@ -23,8 +23,20 @@
         @endif
     </div>
 
+    @if ($isPaidMember)
+        <div class="notice" role="status">有料会員: 次の問題へ進んで、反復学習を続けられます。</div>
+    @elseif ($hasReachedFreeLimit)
+        <div class="notice warning" role="status">無料で回答できる {{ $freeQuestionLimit }} 問に到達しました。6問目以降は有料会員限定です。</div>
+    @else
+        <div class="notice warning" role="status">無料体験中: 残り {{ $remainingFreeQuestions }} 問を無料で回答できます。</div>
+    @endif
+
     <div class="actions">
-        <a class="button" href="{{ route('quiz.index', ['certification' => $currentSlug]) }}">同じ資格で次の問題へ</a>
+        @if ($hasReachedFreeLimit)
+            <a class="button" href="{{ route('membership', ['certification' => $currentSlug]) }}">有料会員で続ける</a>
+        @else
+            <a class="button" href="{{ route('quiz.index', ['certification' => $currentSlug]) }}">同じ資格で次の問題へ</a>
+        @endif
         <a class="button secondary" href="{{ route('home') }}">資格を選び直す</a>
     </div>
 @endsection
