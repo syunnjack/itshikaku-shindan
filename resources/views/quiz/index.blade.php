@@ -25,7 +25,9 @@
     <h1>{{ $currentCertification['name'] }} 本試験対策</h1>
     <p class="lead">{{ $currentCertification['description'] }}</p>
 
-    @if ($isPaidMember)
+    @guest
+        <div class="notice warning" role="status">無料5問を利用するには、新規登録またはログインしてください。回答数はアカウント単位で保存されます。</div>
+    @elseif ($isPaidMember)
         <div class="notice" role="status">有料会員: すべての問題を制限なく利用できます。</div>
     @else
         <div class="notice warning" role="status">無料体験中: 残り {{ $remainingFreeQuestions }} 問を無料で回答できます。6問目以降は有料会員限定です。</div>
@@ -45,15 +47,23 @@
     @if ($question)
         <p class="lead">本試験で問われる判断軸を意識して、○か×を即答してください。</p>
 
-        <form method="POST" action="{{ route('quiz.check', ['certification' => $currentSlug]) }}" aria-label="{{ $currentCertification['name'] }}の回答フォーム">
-            @csrf
+        @auth
+            <form method="POST" action="{{ route('quiz.check', ['certification' => $currentSlug]) }}" aria-label="{{ $currentCertification['name'] }}の回答フォーム">
+                @csrf
+                <p class="question-text">{{ $question->question }}</p>
+                <input type="hidden" name="id" value="{{ $question->id }}">
+                <div class="answer-form">
+                    <button type="submit" name="answer" value="○" class="answer-button" aria-label="正しい">○</button>
+                    <button type="submit" name="answer" value="×" class="answer-button" aria-label="間違い">×</button>
+                </div>
+            </form>
+        @else
             <p class="question-text">{{ $question->question }}</p>
-            <input type="hidden" name="id" value="{{ $question->id }}">
-            <div class="answer-form">
-                <button type="submit" name="answer" value="○" class="answer-button" aria-label="正しい">○</button>
-                <button type="submit" name="answer" value="×" class="answer-button" aria-label="間違い">×</button>
+            <div class="actions">
+                <a class="button" href="{{ route('register') }}">無料で5問試す</a>
+                <a class="button secondary" href="{{ route('login') }}">ログイン</a>
             </div>
-        </form>
+        @endauth
     @else
         <p class="lead">現在、{{ $currentCertification['name'] }} の問題がありません。</p>
         <p>データベースにこの資格の問題を追加すると、ここにランダムな本試験対策クイズが表示されます。</p>

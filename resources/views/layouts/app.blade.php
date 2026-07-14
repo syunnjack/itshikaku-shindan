@@ -68,22 +68,30 @@
         * { box-sizing: border-box; }
         body { margin: 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
         a { color: var(--accent-dark); }
-        a:focus-visible, button:focus-visible { outline: 3px solid #f59e0b; outline-offset: 3px; }
+        a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid #f59e0b; outline-offset: 3px; }
         .skip-link { position: absolute; left: 1rem; top: -4rem; z-index: 10; background: #fff; padding: .5rem .75rem; border: 1px solid var(--border); }
         .skip-link:focus { top: 1rem; }
         header, main, footer { width: min(1040px, calc(100% - 32px)); margin-inline: auto; }
         header { padding: 24px 0 12px; }
         nav { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
         .brand { color: var(--text); font-weight: 800; text-decoration: none; }
-        .nav-links { display: flex; flex-wrap: wrap; gap: 12px; }
+        .nav-links { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+        .nav-form { margin: 0; }
+        .nav-button { min-height: 0; padding: 0; border: 0; background: transparent; color: var(--accent-dark); font: inherit; font-weight: 400; text-decoration: underline; box-shadow: none; }
         .quiz-box { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: clamp(24px, 5vw, 44px); box-shadow: 0 18px 45px rgba(15, 23, 42, .08); }
         h1 { margin: 0 0 16px; font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.15; }
         h2 { margin-top: 32px; font-size: 1.35rem; line-height: 1.3; }
         p { margin: 0 0 16px; }
         ul { margin: 0 0 16px; padding-left: 1.25rem; }
+        label { display: block; margin-bottom: 6px; font-weight: 700; }
+        input[type="text"], input[type="email"], input[type="password"] { width: 100%; min-height: 44px; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; font: inherit; }
+        .form-grid { display: grid; gap: 16px; margin-top: 24px; max-width: 560px; }
+        .checkbox-row { display: flex; align-items: center; gap: 8px; }
+        .checkbox-row label { margin: 0; font-weight: 400; }
         .lead { color: var(--muted); font-size: 1.1rem; }
         .notice { margin: 20px 0; border: 1px solid #99f6e4; border-radius: 8px; padding: 14px 16px; background: #f0fdfa; color: #134e4a; font-weight: 700; }
         .notice.warning { border-color: #fde68a; background: #fffbeb; color: #713f12; }
+        .error-list { margin: 20px 0; border: 1px solid #fecaca; border-radius: 8px; padding: 14px 16px; background: #fef2f2; color: #7f1d1d; }
         .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 20px 0; }
         .cert-card { display: block; border: 1px solid var(--border); border-radius: 8px; padding: 16px; color: var(--text); text-decoration: none; background: #fbfdfc; }
         .cert-card[aria-current="page"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
@@ -111,6 +119,16 @@
                 <a href="{{ route('quiz.index', ['certification' => 'aws-cloud-practitioner']) }}">ベンダー資格</a>
                 <a href="{{ route('about') }}">学習設計</a>
                 <a href="{{ route('membership') }}">有料会員</a>
+                @auth
+                    <span>{{ auth()->user()->name }}</span>
+                    <form class="nav-form" method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button class="nav-button" type="submit">ログアウト</button>
+                    </form>
+                @else
+                    <a href="{{ route('login') }}">ログイン</a>
+                    <a href="{{ route('register') }}">新規登録</a>
+                @endauth
                 <a href="{{ route('llms') }}">LLMs.txt</a>
             </div>
         </nav>

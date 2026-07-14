@@ -3,21 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Question;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class QuestionController extends Controller
 {
-    public function index(Request $request, ?string $certification = null)
+    public function index(Request $request, ?string $certification = null): View|RedirectResponse
     {
         $certifications = $this->certifications();
         $currentSlug = $this->resolveCertificationSlug($certification);
         $currentCertification = $certifications[$currentSlug];
-        $answeredCount = $this->answeredCount($request);
+
         $freeQuestionLimit = $this->freeQuestionLimit();
-        $isPaidMember = $this->isPaidMember($request);
+        $answeredCount = $request->user() ? $this->answeredCount($request) : 0;
+        $isPaidMember = $request->user() ? $this->isPaidMember($request) : false;
         $remainingFreeQuestions = max(0, $freeQuestionLimit - $answeredCount);
 
-        if (! $isPaidMember && $remainingFreeQuestions === 0) {
+        if ($request->user() && ! $isPaidMember && $remainingFreeQuestions === 0) {
             return redirect()
                 ->route('membership', ['certification' => $currentSlug])
                 ->with('status', '無料で回答できる5問に到達しました。有料会員になると学習を継続できます。');
@@ -39,11 +42,18 @@ class QuestionController extends Controller
         ));
     }
 
-    public function check(Request $request, ?string $certification = null)
+    public function check(Request $request, ?string $certification = null): View|RedirectResponse
     {
         $certifications = $this->certifications();
         $currentSlug = $this->resolveCertificationSlug($certification);
         $currentCertification = $certifications[$currentSlug];
+
+        if (! $request->user()) {
+            return redirect()
+                ->route('login')
+                ->with('status', '回答するにはログインまたは新規登録してください。');
+        }
+
         $answeredCount = $this->answeredCount($request);
         $freeQuestionLimit = $this->freeQuestionLimit();
         $isPaidMember = $this->isPaidMember($request);
@@ -65,8 +75,8 @@ class QuestionController extends Controller
         $isCorrect = $question->answer === $userAnswer;
 
         if (! $isPaidMember) {
+            $request->user()->increment('free_questions_answered');
             $answeredCount++;
-            $request->session()->put('quiz_answered_count', $answeredCount);
         }
 
         $remainingFreeQuestions = max(0, $freeQuestionLimit - $answeredCount);
@@ -112,7 +122,7 @@ class QuestionController extends Controller
 
     private function answeredCount(Request $request): int
     {
-        return (int) $request->session()->get('quiz_answered_count', 0);
+        return (int) $request->user()->free_questions_answered;
     }
 
     private function freeQuestionLimit(): int
@@ -122,6 +132,6 @@ class QuestionController extends Controller
 
     private function isPaidMember(Request $request): bool
     {
-        return (bool) (config('membership.force_paid_member') || $request->session()->get('is_paid_member', false));
+        return (bool) (config('membership.force_paid_member') || $request->user()->is_paid_member);
     }
 }

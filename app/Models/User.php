@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'free_questions_answered',
+        'is_paid_member',
     ];
 
     /**
@@ -43,6 +45,8 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'free_questions_answered' => 'integer',
+            'is_paid_member' => 'boolean',
         ];
     }
 }

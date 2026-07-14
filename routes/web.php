@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,14 +16,28 @@ Route::get('/about', function () {
     return view('about', compact('certifications'));
 })->name('about');
 
+Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+Route::post('/register', [AuthController::class, 'register'])->name('register.store');
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.store');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
 Route::get('/membership', function () {
     $certifications = collect(config('certifications'))->sortBy('rank')->all();
     $certificationSlug = request('certification', 'it-passport');
     $currentCertification = $certifications[$certificationSlug] ?? $certifications['it-passport'];
-    $answeredCount = (int) session('quiz_answered_count', 0);
+    $user = request()->user();
+    $answeredCount = (int) ($user?->free_questions_answered ?? 0);
     $freeQuestionLimit = config('membership.free_question_limit');
+    $isPaidMember = (bool) (config('membership.force_paid_member') || ($user?->is_paid_member ?? false));
 
-    return view('membership', compact('certifications', 'currentCertification', 'answeredCount', 'freeQuestionLimit'));
+    return view('membership', compact(
+        'certifications',
+        'currentCertification',
+        'answeredCount',
+        'freeQuestionLimit',
+        'isPaidMember'
+    ));
 })->name('membership');
 
 Route::get('/sitemap.xml', function () {
