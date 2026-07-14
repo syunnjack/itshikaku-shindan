@@ -34,9 +34,12 @@
     <div class="actions">
         @if ($hasReachedFreeLimit)
             <a class="button" href="{{ route('membership', ['certification' => $currentSlug]) }}">有料会員で続ける</a>
+        @elseif (!empty($isReviewMode))
+            <a class="button" href="{{ route('quiz.review', ['certification' => $currentSlug]) }}">復習を続ける</a>
         @else
             <a class="button" href="{{ route('quiz.index', ['certification' => $currentSlug]) }}">同じ資格で次の問題へ</a>
         @endif
+        <a class="button secondary" href="{{ route('quiz.review', ['certification' => $currentSlug]) }}">間違えた問題を復習</a>
         <a class="button secondary" href="{{ route('home') }}">資格を選び直す</a>
     </div>
 @endsection

@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\CertificationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,11 +19,21 @@ Route::get('/about', function () {
     return view('about', compact('certifications'));
 })->name('about');
 
+Route::view('/terms', 'legal.terms')->name('legal.terms');
+Route::view('/privacy', 'legal.privacy')->name('legal.privacy');
+Route::view('/commercial-transactions', 'legal.commercial')->name('legal.commercial');
+
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
 Route::post('/register', [AuthController::class, 'register'])->name('register.store');
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.store');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::post('/billing/checkout', [PaymentController::class, 'checkout'])->name('payment.checkout');
+Route::get('/billing/success', [PaymentController::class, 'success'])->name('payment.success');
+Route::post('/stripe/webhook', [PaymentController::class, 'webhook'])->name('stripe.webhook');
+Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
+Route::patch('/admin/users/{user}/paid-member', [AdminController::class, 'togglePaidMember'])->name('admin.users.toggle-paid-member');
 
 Route::get('/membership', function () {
     $certifications = collect(config('certifications'))->sortBy('rank')->all();
@@ -44,13 +57,20 @@ Route::get('/sitemap.xml', function () {
     $urls = [
         ['loc' => route('home'), 'priority' => '1.0'],
         ['loc' => route('about'), 'priority' => '0.7'],
+        ['loc' => route('legal.terms'), 'priority' => '0.3'],
+        ['loc' => route('legal.privacy'), 'priority' => '0.3'],
+        ['loc' => route('legal.commercial'), 'priority' => '0.3'],
         ['loc' => url('/llms.txt'), 'priority' => '0.4'],
     ];
 
     foreach (collect(config('certifications'))->sortBy('rank') as $slug => $certification) {
         $urls[] = [
-            'loc' => route('quiz.index', ['certification' => $slug]),
+            'loc' => route('certifications.show', ['certification' => $slug]),
             'priority' => $certification['rank'] === 1 ? '0.9' : '0.8',
+        ];
+        $urls[] = [
+            'loc' => route('quiz.index', ['certification' => $slug]),
+            'priority' => '0.6',
         ];
     }
 
@@ -84,4 +104,6 @@ Route::get('/llms.txt', function () {
 })->name('llms');
 
 Route::get('/quiz/{certification?}', [QuestionController::class, 'index'])->name('quiz.index');
+Route::get('/review/{certification?}', [QuestionController::class, 'review'])->name('quiz.review');
 Route::post('/quiz/{certification?}/check', [QuestionController::class, 'check'])->name('quiz.check');
+Route::get('/certifications/{certification}', [CertificationController::class, 'show'])->name('certifications.show');

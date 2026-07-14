@@ -4,25 +4,29 @@
 @section('description', $currentCertification['name'] . 'の本試験で問われやすい重要論点を一問一答で確認できます。')
 @section('canonical', route('quiz.index', ['certification' => $currentSlug]))
 
+@php
+    $quizStructuredData = [
+        '@context' => 'https://schema.org',
+        '@type' => 'Quiz',
+        'name' => $currentCertification['name'] . ' 本試験対策クイズ',
+        'inLanguage' => 'ja',
+        'about' => $currentCertification['name'],
+        'url' => route('quiz.index', ['certification' => $currentSlug]),
+        'educationalLevel' => $currentCertification['level'],
+        'educationalUse' => 'exam preparation',
+        'learningResourceType' => 'quiz',
+        'teaches' => [$currentCertification['name'], '本試験頻出論点', '正誤判断'],
+    ];
+@endphp
+
 @push('structured_data')
     <script type="application/ld+json">
-        @json([
-            '@context' => 'https://schema.org',
-            '@type' => 'Quiz',
-            'name' => $currentCertification['name'] . ' 本試験対策クイズ',
-            'inLanguage' => 'ja',
-            'about' => $currentCertification['name'],
-            'url' => route('quiz.index', ['certification' => $currentSlug]),
-            'educationalLevel' => $currentCertification['level'],
-            'educationalUse' => 'exam preparation',
-            'learningResourceType' => 'quiz',
-            'teaches' => [$currentCertification['name'], '本試験頻出論点', '正誤判断'],
-        ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT)
+        {!! json_encode($quizStructuredData, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
     </script>
 @endpush
 
 @section('content')
-    <h1>{{ $currentCertification['name'] }} 本試験対策</h1>
+    <h1>{{ $currentCertification['name'] }} {{ !empty($isReviewMode) ? '間違えた問題の復習' : '本試験対策' }}</h1>
     <p class="lead">{{ $currentCertification['description'] }}</p>
 
     @guest
@@ -45,13 +49,16 @@
     </div>
 
     @if ($question)
-        <p class="lead">本試験で問われる判断軸を意識して、○か×を即答してください。</p>
+        <p class="lead">{{ !empty($isReviewMode) ? '過去に間違えた問題を再確認して、弱点をつぶしてください。' : '本試験で問われる判断軸を意識して、○か×を即答してください。' }}</p>
 
         @auth
             <form method="POST" action="{{ route('quiz.check', ['certification' => $currentSlug]) }}" aria-label="{{ $currentCertification['name'] }}の回答フォーム">
                 @csrf
                 <p class="question-text">{{ $question->question }}</p>
                 <input type="hidden" name="id" value="{{ $question->id }}">
+                @if (!empty($isReviewMode))
+                    <input type="hidden" name="review" value="1">
+                @endif
                 <div class="answer-form">
                     <button type="submit" name="answer" value="○" class="answer-button" aria-label="正しい">○</button>
                     <button type="submit" name="answer" value="×" class="answer-button" aria-label="間違い">×</button>
@@ -65,7 +72,15 @@
             </div>
         @endauth
     @else
-        <p class="lead">現在、{{ $currentCertification['name'] }} の問題がありません。</p>
-        <p>データベースにこの資格の問題を追加すると、ここにランダムな本試験対策クイズが表示されます。</p>
+        @if (!empty($isReviewMode))
+            <p class="lead">現在、{{ $currentCertification['name'] }} で復習対象の不正解問題はありません。</p>
+            <p>まず通常の問題に回答すると、間違えた問題がここに表示されます。</p>
+            <div class="actions">
+                <a class="button" href="{{ route('quiz.index', ['certification' => $currentSlug]) }}">通常問題へ進む</a>
+            </div>
+        @else
+            <p class="lead">現在、{{ $currentCertification['name'] }} の問題がありません。</p>
+            <p>データベースにこの資格の問題を追加すると、ここにランダムな本試験対策クイズが表示されます。</p>
+        @endif
     @endif
 @endsection

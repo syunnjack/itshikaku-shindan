@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Question;
+use App\Models\QuestionAttempt;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -42,6 +43,54 @@ class QuestionController extends Controller
         ));
     }
 
+    public function review(Request $request, ?string $certification = null): View|RedirectResponse
+    {
+        if (! $request->user()) {
+            return redirect()
+                ->route('login')
+                ->with('status', '間違えた問題の復習にはログインが必要です。');
+        }
+
+        $certifications = $this->certifications();
+        $currentSlug = $this->resolveCertificationSlug($certification);
+        $currentCertification = $certifications[$currentSlug];
+        $freeQuestionLimit = $this->freeQuestionLimit();
+        $answeredCount = $this->answeredCount($request);
+        $isPaidMember = $this->isPaidMember($request);
+        $remainingFreeQuestions = max(0, $freeQuestionLimit - $answeredCount);
+
+        if (! $isPaidMember && $remainingFreeQuestions === 0) {
+            return redirect()
+                ->route('membership', ['certification' => $currentSlug])
+                ->with('status', '無料で回答できる5問に到達しました。有料会員になると復習を継続できます。');
+        }
+
+        $incorrectQuestionIds = QuestionAttempt::query()
+            ->where('user_id', $request->user()->id)
+            ->where('certification_slug', $currentSlug)
+            ->where('is_correct', false)
+            ->latest()
+            ->pluck('question_id')
+            ->unique();
+
+        $question = Question::where('certification_slug', $currentSlug)
+            ->whereIn('id', $incorrectQuestionIds)
+            ->inRandomOrder()
+            ->first();
+
+        return view('quiz.index', [
+            'certifications' => $certifications,
+            'currentSlug' => $currentSlug,
+            'currentCertification' => $currentCertification,
+            'question' => $question,
+            'answeredCount' => $answeredCount,
+            'freeQuestionLimit' => $freeQuestionLimit,
+            'remainingFreeQuestions' => $remainingFreeQuestions,
+            'isPaidMember' => $isPaidMember,
+            'isReviewMode' => true,
+        ]);
+    }
+
     public function check(Request $request, ?string $certification = null): View|RedirectResponse
     {
         $certifications = $this->certifications();
@@ -79,8 +128,18 @@ class QuestionController extends Controller
             $answeredCount++;
         }
 
+        QuestionAttempt::create([
+            'user_id' => $request->user()->id,
+            'question_id' => $question->id,
+            'certification_slug' => $currentSlug,
+            'user_answer' => $userAnswer,
+            'correct_answer' => $question->answer,
+            'is_correct' => $isCorrect,
+        ]);
+
         $remainingFreeQuestions = max(0, $freeQuestionLimit - $answeredCount);
         $hasReachedFreeLimit = ! $isPaidMember && $remainingFreeQuestions === 0;
+        $isReviewMode = $request->boolean('review');
 
         return view('quiz.result', compact(
             'certifications',
@@ -93,7 +152,8 @@ class QuestionController extends Controller
             'freeQuestionLimit',
             'remainingFreeQuestions',
             'isPaidMember',
-            'hasReachedFreeLimit'
+            'hasReachedFreeLimit',
+            'isReviewMode'
         ));
     }
 

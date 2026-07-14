@@ -33,14 +33,21 @@
     </ul>
 
     <h2>次に接続する機能</h2>
-    <p>決済サービスと接続すると、このページのCTAから有料会員登録へ進めるようになります。現時点では管理側でユーザーの有料会員フラグを有効化できる土台まで実装しています。</p>
+    <p>Stripe Checkoutに接続済みです。環境変数にStripeキーとPrice IDを設定すると、下のボタンから有料会員登録へ進めます。</p>
 
     <div class="actions">
         @guest
             <a class="button" href="{{ route('register') }}">無料で5問試す</a>
             <a class="button secondary" href="{{ route('login') }}">ログイン</a>
         @else
-            <a class="button" href="mailto:hello@it-goukaku.jp?subject=IT%E5%90%88%E6%A0%BC%E3%83%88%E3%83%AC%E3%83%BC%E3%83%8A%E3%83%BC%20%E6%9C%89%E6%96%99%E4%BC%9A%E5%93%A1%E5%B8%8C%E6%9C%9B">有料会員について問い合わせる</a>
+            @if ($isPaidMember)
+                <a class="button" href="{{ route('quiz.index', ['certification' => 'it-passport']) }}">学習を続ける</a>
+            @else
+                <form method="POST" action="{{ route('payment.checkout') }}">
+                    @csrf
+                    <button type="submit">有料会員登録へ進む</button>
+                </form>
+            @endif
             <a class="button secondary" href="{{ route('home') }}">資格を選び直す</a>
         @endguest
     </div>

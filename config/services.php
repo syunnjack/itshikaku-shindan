@@ -41,4 +41,10 @@ return [
         'html_content' => env('GOOGLE_SEARCH_CONSOLE_HTML_CONTENT'),
     ],
 
+    'stripe' => [
+        'secret' => env('STRIPE_SECRET'),
+        'price_id' => env('STRIPE_PRICE_ID'),
+        'webhook_secret' => env('STRIPE_WEBHOOK_SECRET'),
+    ],
+
 ];

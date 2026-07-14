@@ -5,6 +5,25 @@
     $canonical = trim($__env->yieldContent('canonical', url()->current()));
     $ogImage = trim($__env->yieldContent('og_image', asset('ogp.png')));
     $pageTitle = $title === $siteName ? $title : $title . ' | ' . $siteName;
+    $applicationStructuredData = [
+        '@context' => 'https://schema.org',
+        '@type' => 'WebApplication',
+        'name' => $siteName,
+        'applicationCategory' => 'EducationalApplication',
+        'operatingSystem' => 'Web',
+        'inLanguage' => 'ja',
+        'url' => route('home'),
+        'description' => '国家試験、ベンダー資格、民間IT資格の合格に必要な知識を一問一答で確認し、解説で定着させる学習アプリです。',
+        'audience' => [
+            '@type' => 'EducationalAudience',
+            'educationalRole' => '資格試験受験者',
+        ],
+        'offers' => [
+            '@type' => 'Offer',
+            'price' => '0',
+            'priceCurrency' => 'JPY',
+        ],
+    ];
 @endphp
 <!DOCTYPE html>
 <html lang="ja">
@@ -34,25 +53,7 @@
     <meta name="twitter:description" content="{{ $description }}">
     <meta name="twitter:image" content="{{ $ogImage }}">
     <script type="application/ld+json">
-        @json([
-            '@context' => 'https://schema.org',
-            '@type' => 'WebApplication',
-            'name' => $siteName,
-            'applicationCategory' => 'EducationalApplication',
-            'operatingSystem' => 'Web',
-            'inLanguage' => 'ja',
-            'url' => route('home'),
-            'description' => '国家試験、ベンダー資格、民間IT資格の合格に必要な知識を一問一答で確認し、解説で定着させる学習アプリです。',
-            'audience' => [
-                '@type' => 'EducationalAudience',
-                'educationalRole' => '資格試験受験者',
-            ],
-            'offers' => [
-                '@type' => 'Offer',
-                'price' => '0',
-                'priceCurrency' => 'JPY',
-            ],
-        ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT)
+        {!! json_encode($applicationStructuredData, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
     </script>
     @stack('structured_data')
     <style>
@@ -106,6 +107,10 @@
         .question-text { font-size: 1.25rem; font-weight: 700; }
         .result-box { border-radius: 8px; margin-top: 20px; padding: 20px; background: #ecfdf5; border: 1px solid #a7f3d0; }
         .result-box.incorrect { background: #fff7ed; border-color: #fed7aa; }
+        .table-wrap { overflow-x: auto; margin-top: 20px; }
+        table { width: 100%; border-collapse: collapse; min-width: 720px; }
+        th, td { border-bottom: 1px solid var(--border); padding: 10px; text-align: left; vertical-align: top; }
+        th { background: #f0fdfa; font-weight: 800; }
         footer { padding: 24px 0 36px; color: var(--muted); font-size: .95rem; }
     </style>
 </head>
@@ -121,6 +126,9 @@
                 <a href="{{ route('membership') }}">有料会員</a>
                 @auth
                     <span>{{ auth()->user()->name }}</span>
+                    @if (config('membership.admin_email') && auth()->user()->email === config('membership.admin_email'))
+                        <a href="{{ route('admin.users') }}">管理</a>
+                    @endif
                     <form class="nav-form" method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button class="nav-button" type="submit">ログアウト</button>
@@ -140,6 +148,11 @@
     </main>
     <footer>
         <p>&copy; {{ date('Y') }} {{ $siteName }}. IT資格の合格に必要な知識定着を支援します。</p>
+        <p>
+            <a href="{{ route('legal.terms') }}">利用規約</a> /
+            <a href="{{ route('legal.privacy') }}">プライバシーポリシー</a> /
+            <a href="{{ route('legal.commercial') }}">特定商取引法に基づく表記</a>
+        </p>
     </footer>
 </body>
 </html>

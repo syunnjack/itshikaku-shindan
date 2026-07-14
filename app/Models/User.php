@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
@@ -23,6 +24,9 @@ class User extends Authenticatable
         'password',
         'free_questions_answered',
         'is_paid_member',
+        'stripe_customer_id',
+        'stripe_subscription_id',
+        'paid_member_since',
     ];
 
     /**
@@ -47,6 +51,12 @@ class User extends Authenticatable
             'password' => 'hashed',
             'free_questions_answered' => 'integer',
             'is_paid_member' => 'boolean',
+            'paid_member_since' => 'datetime',
         ];
+    }
+
+    public function questionAttempts(): HasMany
+    {
+        return $this->hasMany(QuestionAttempt::class);
     }
 }
