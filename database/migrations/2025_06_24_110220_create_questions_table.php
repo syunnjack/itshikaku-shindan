@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('question');
             $table->string('answer');
-            $table->string('explanation');
-            //$table->timestamps();
+            $table->string('explanation')->nullable();
         });
     }
 
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //Schema::dropIfExists('questions');
+        Schema::dropIfExists('questions');
     }
 };

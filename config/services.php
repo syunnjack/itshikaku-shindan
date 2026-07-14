@@ -35,4 +35,10 @@ return [
         ],
     ],
 
+    'google_search_console' => [
+        'site_verification' => env('GOOGLE_SITE_VERIFICATION'),
+        'html_file' => env('GOOGLE_SEARCH_CONSOLE_HTML_FILE'),
+        'html_content' => env('GOOGLE_SEARCH_CONSOLE_HTML_CONTENT'),
+    ],
+
 ];

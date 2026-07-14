@@ -1,16 +1,55 @@
 @extends('layouts.app')
 
-@section('title','クイズ')
+@section('title', $currentCertification['name'] . ' 本試験対策')
+@section('description', $currentCertification['name'] . 'の本試験で問われやすい重要論点を一問一答で確認できます。')
+@section('canonical', route('quiz.index', ['certification' => $currentSlug]))
+
+@push('structured_data')
+    <script type="application/ld+json">
+        @json([
+            '@context' => 'https://schema.org',
+            '@type' => 'Quiz',
+            'name' => $currentCertification['name'] . ' 本試験対策クイズ',
+            'inLanguage' => 'ja',
+            'about' => $currentCertification['name'],
+            'url' => route('quiz.index', ['certification' => $currentSlug]),
+            'educationalLevel' => $currentCertification['level'],
+            'educationalUse' => 'exam preparation',
+            'learningResourceType' => 'quiz',
+            'teaches' => [$currentCertification['name'], '本試験頻出論点', '正誤判断'],
+        ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT)
+    </script>
+@endpush
 
 @section('content')
-    <h1>問題</h1>
+    <h1>{{ $currentCertification['name'] }} 本試験対策</h1>
+    <p class="lead">{{ $currentCertification['description'] }}</p>
 
-    <form method="POST" action="{{url('/quiz/check')}}">
-        @csrf
-        <p>{{ $question->question }}</p>
-        <input type="hidden" name="id" value="{{ $question->id }}">
-        <!--<input type="text" name="answer">-->
-        <button type="submit" name="answer" value="〇" class="answer-button">〇</button>
-        <button type="submit" name="answer" value="×" class="answer-button">×</button>
-    </form>
+    <h2>同じ分類の資格に切り替える</h2>
+    <div class="cert-grid" aria-label="資格切り替え">
+        @foreach (collect($certifications)->where('category', $currentCertification['category'])->sortBy('category_rank') as $slug => $certification)
+            <a class="cert-card" href="{{ route('quiz.index', ['certification' => $slug]) }}" @if ($slug === $currentSlug) aria-current="page" @endif>
+                <span class="cert-rank">{{ $certification['category_rank'] }}位 / {{ $certification['code'] }}</span>
+                <span class="cert-name">{{ $certification['short_name'] }}</span>
+                <span class="cert-meta">{{ $certification['level'] }}</span>
+            </a>
+        @endforeach
+    </div>
+
+    @if ($question)
+        <p class="lead">本試験で問われる判断軸を意識して、○か×を即答してください。</p>
+
+        <form method="POST" action="{{ route('quiz.check', ['certification' => $currentSlug]) }}" aria-label="{{ $currentCertification['name'] }}の回答フォーム">
+            @csrf
+            <p class="question-text">{{ $question->question }}</p>
+            <input type="hidden" name="id" value="{{ $question->id }}">
+            <div class="answer-form">
+                <button type="submit" name="answer" value="○" class="answer-button" aria-label="正しい">○</button>
+                <button type="submit" name="answer" value="×" class="answer-button" aria-label="間違い">×</button>
+            </div>
+        </form>
+    @else
+        <p class="lead">現在、{{ $currentCertification['name'] }} の問題がありません。</p>
+        <p>データベースにこの資格の問題を追加すると、ここにランダムな本試験対策クイズが表示されます。</p>
+    @endif
 @endsection
