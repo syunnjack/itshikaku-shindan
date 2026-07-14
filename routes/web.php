@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminQuestionController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\CertificationController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -32,8 +34,15 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/billing/checkout', [PaymentController::class, 'checkout'])->name('payment.checkout');
 Route::get('/billing/success', [PaymentController::class, 'success'])->name('payment.success');
 Route::post('/stripe/webhook', [PaymentController::class, 'webhook'])->name('stripe.webhook');
+Route::get('/dashboard', [DashboardController::class, 'show'])->name('dashboard');
 Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
 Route::patch('/admin/users/{user}/paid-member', [AdminController::class, 'togglePaidMember'])->name('admin.users.toggle-paid-member');
+Route::get('/admin/questions', [AdminQuestionController::class, 'index'])->name('admin.questions.index');
+Route::get('/admin/questions/create', [AdminQuestionController::class, 'create'])->name('admin.questions.create');
+Route::post('/admin/questions', [AdminQuestionController::class, 'store'])->name('admin.questions.store');
+Route::get('/admin/questions/{question}/edit', [AdminQuestionController::class, 'edit'])->name('admin.questions.edit');
+Route::patch('/admin/questions/{question}', [AdminQuestionController::class, 'update'])->name('admin.questions.update');
+Route::delete('/admin/questions/{question}', [AdminQuestionController::class, 'destroy'])->name('admin.questions.destroy');
 
 Route::get('/membership', function () {
     $certifications = collect(config('certifications'))->sortBy('rank')->all();

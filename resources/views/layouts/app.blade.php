@@ -85,7 +85,8 @@
         p { margin: 0 0 16px; }
         ul { margin: 0 0 16px; padding-left: 1.25rem; }
         label { display: block; margin-bottom: 6px; font-weight: 700; }
-        input[type="text"], input[type="email"], input[type="password"] { width: 100%; min-height: 44px; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; font: inherit; }
+        input[type="text"], input[type="email"], input[type="password"], input[type="number"], select, textarea { width: 100%; min-height: 44px; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; font: inherit; background: #fff; }
+        textarea { resize: vertical; }
         .form-grid { display: grid; gap: 16px; margin-top: 24px; max-width: 560px; }
         .checkbox-row { display: flex; align-items: center; gap: 8px; }
         .checkbox-row label { margin: 0; font-weight: 400; }
@@ -93,6 +94,10 @@
         .notice { margin: 20px 0; border: 1px solid #99f6e4; border-radius: 8px; padding: 14px 16px; background: #f0fdfa; color: #134e4a; font-weight: 700; }
         .notice.warning { border-color: #fde68a; background: #fffbeb; color: #713f12; }
         .error-list { margin: 20px 0; border: 1px solid #fecaca; border-radius: 8px; padding: 14px 16px; background: #fef2f2; color: #7f1d1d; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 24px 0; }
+        .stat-card { border: 1px solid var(--border); border-radius: 8px; padding: 16px; background: #fbfdfc; }
+        .stat-label { display: block; color: var(--muted); font-size: .9rem; }
+        .stat-card strong { display: block; font-size: 1.8rem; line-height: 1.2; margin-top: 4px; }
         .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 20px 0; }
         .cert-card { display: block; border: 1px solid var(--border); border-radius: 8px; padding: 16px; color: var(--text); text-decoration: none; background: #fbfdfc; }
         .cert-card[aria-current="page"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
@@ -100,6 +105,7 @@
         .cert-name { display: block; margin-top: 4px; font-weight: 800; }
         .cert-meta { display: block; color: var(--muted); font-size: .9rem; }
         .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+        .actions.compact { margin-top: 0; gap: 8px; align-items: center; }
         .button, button { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 18px; border: 0; border-radius: 8px; background: var(--accent); color: #fff; font-weight: 700; text-decoration: none; cursor: pointer; }
         .button.secondary { background: #e9f3f1; color: var(--text); }
         .answer-form { display: flex; justify-content: center; gap: 20px; margin-top: 24px; flex-wrap: wrap; }
@@ -125,9 +131,11 @@
                 <a href="{{ route('about') }}">学習設計</a>
                 <a href="{{ route('membership') }}">有料会員</a>
                 @auth
+                    <a href="{{ route('dashboard') }}">マイページ</a>
                     <span>{{ auth()->user()->name }}</span>
                     @if (config('membership.admin_email') && auth()->user()->email === config('membership.admin_email'))
                         <a href="{{ route('admin.users') }}">管理</a>
+                        <a href="{{ route('admin.questions.index') }}">問題管理</a>
                     @endif
                     <form class="nav-form" method="POST" action="{{ route('logout') }}">
                         @csrf
