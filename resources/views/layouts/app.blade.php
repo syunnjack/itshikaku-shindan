@@ -124,6 +124,15 @@
         th { background: #f0fdfa; font-weight: 800; }
         footer { padding: 24px 0 36px; color: var(--muted); font-size: .95rem; }
     </style>
+  @if(config('services.ga4.id'))
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('services.ga4.id') }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '{{ config('services.ga4.id') }}');
+  </script>
+  @endif
 </head>
 <body>
     <a class="skip-link" href="#main">本文へ移動</a>
