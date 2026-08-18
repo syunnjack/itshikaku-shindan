@@ -9,9 +9,11 @@
         {{-- @json は引数をカンマで単純に分割して先頭だけを値として使う
              (Illuminate\View\Compilers\Concerns\CompilesJson)。配列を直接
              書くと最初のカンマで切れて括弧が閉じず、ページ全体が500になる。
-             json_encode をそのまま呼ぶ。 --}}
+             json_encode をそのまま呼ぶ。
+             なお @context は Blade のディレクティブ名と衝突するため、
+             他サイトと同じく @@ でエスケープする。 --}}
         {!! json_encode([
-            '@context' => 'https://schema.org',
+            '@@context' => 'https://schema.org',
             '@type' => 'FAQPage',
             'mainEntity' => [
                 [
