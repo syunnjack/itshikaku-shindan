@@ -24,5 +24,11 @@ jobs:
             echo "=== コンパイル済みビューの数 ==="
             ls "$APP/storage/framework/views/" 2>&1 | wc -l
             echo
-            echo "=== 直近の例外メッセージ ==="
-            grep -o 'production\.ERROR: [^{]*' "$APP/storage/logs/laravel.log" 2>&1 | tail -5
+            echo "=== 直近の例外（日時つき） ==="
+            grep -o '^\[[^]]*\] production\.ERROR: [^{]*' "$APP/storage/logs/laravel.log" 2>&1 | tail -6
+            echo
+            echo "=== about.blade.php がリポジトリと一致するか ==="
+            wc -l "$APP/resources/views/about.blade.php"
+            md5sum "$APP/resources/views/about.blade.php"
+            echo "--- 9行目付近 ---"
+            sed -n '7,12p' "$APP/resources/views/about.blade.php"
