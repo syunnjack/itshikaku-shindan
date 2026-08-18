@@ -1,0 +1,28 @@
+# /about が500になる原因を調べるためだけの、一時的なワークフロー。
+# 手動実行のみ。読み取り専用のコマンドしか実行しない。確認が済んだら削除する。
+name: Inspect error log
+
+on:
+  workflow_dispatch:
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Tail Laravel log over SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          port: 10022
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            APP=~/it-goukaku.jp/app
+            echo "=== views の更新時刻 ==="
+            ls -la "$APP/resources/views/" | head -20
+            echo
+            echo "=== コンパイル済みビューの数 ==="
+            ls "$APP/storage/framework/views/" 2>&1 | wc -l
+            echo
+            echo "=== laravel.log の末尾 ==="
+            tail -40 "$APP/storage/logs/laravel.log" 2>&1
