@@ -1,0 +1,192 @@
+[
+  {
+    "sortOrder": 1,
+    "format": "true_false",
+    "question": "Azure Resource Managerは、Azureリソースを一貫した方法でデプロイ・管理する仕組みである。",
+    "answer": "○",
+    "explanation": "ARMによりテンプレートやリソースグループ単位で管理できます。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 2,
+    "format": "true_false",
+    "question": "Azure Entra IDは、IDとアクセス管理を提供するクラウドサービスである。",
+    "answer": "○",
+    "explanation": "旧Azure Active Directoryで、認証、SSO、条件付きアクセスなどに関係します。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 3,
+    "format": "true_false",
+    "question": "Azureのリージョンは、必ず1つのデータセンターだけで構成される。",
+    "answer": "×",
+    "explanation": "リージョンは複数のデータセンターで構成される場合があり、可用性設計に関係します。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 4,
+    "format": "true_false",
+    "question": "IaaSでは、利用者がOSの管理を担当することが多い。",
+    "answer": "○",
+    "explanation": "仮想マシンを使う場合、OS更新やミドルウェア管理は利用者側の責任になります。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 5,
+    "format": "true_false",
+    "question": "Azure Cost Managementは、コストの分析や予算管理に利用できる。",
+    "answer": "○",
+    "explanation": "利用状況の可視化、予算、アラートなどでコスト管理を支援します。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 6,
+    "format": "multiple_choice",
+    "question": "IaaS、PaaS、SaaSのうち、利用者がOSの更新まで管理する必要がある形態はどれか。",
+    "answer": "ア",
+    "explanation": "IaaSは仮想マシンを借りる形態なので、OSやミドルウェアの管理は利用者側です。PaaSは実行環境まで、SaaSはアプリまで提供事業者が管理します。",
+    "isTrial": true,
+    "choices": {
+      "ア": "IaaS",
+      "イ": "PaaS",
+      "ウ": "SaaS",
+      "エ": "いずれの形態でも管理は不要"
+    }
+  },
+  {
+    "sortOrder": 7,
+    "format": "multiple_choice",
+    "question": "Microsoft Entra ID（旧Azure AD）の役割として、最も適切なものはどれか。",
+    "answer": "ウ",
+    "explanation": "ID管理とアクセス制御の基盤です。シングルサインオンや多要素認証、条件付きアクセスなどを提供します。",
+    "isTrial": true,
+    "choices": {
+      "ア": "仮想マシンの性能を監視する",
+      "イ": "データを地理的に離れた場所へ複製する",
+      "ウ": "利用者やアプリの認証・認可を管理する",
+      "エ": "料金の見積もりを作成する"
+    }
+  },
+  {
+    "sortOrder": 8,
+    "format": "multiple_choice",
+    "question": "リージョンペアを利用する主な目的として、最も適切なものはどれか。",
+    "answer": "イ",
+    "explanation": "リージョンペアは災害対策の観点で組み合わされており、更新の適用順もずらされます。",
+    "isTrial": true,
+    "choices": {
+      "ア": "課金を1つのリージョンにまとめるため",
+      "イ": "広域障害に備えて、離れた場所へ複製し復旧できるようにするため",
+      "ウ": "同一リージョン内で通信速度を上げるため",
+      "エ": "サポート窓口を統合するため"
+    }
+  },
+  {
+    "sortOrder": 9,
+    "format": "multiple_choice",
+    "question": "Azureのコスト管理で、想定外の出費を早く把握するために有効な機能はどれか。",
+    "answer": "エ",
+    "explanation": "予算を設定し、閾値を超えたら通知する仕組みが有効です。他の選択肢は可用性やネットワークの機能です。",
+    "isTrial": true,
+    "choices": {
+      "ア": "仮想ネットワークピアリング",
+      "イ": "可用性セット",
+      "ウ": "ロードバランサー",
+      "エ": "予算とコストアラート"
+    }
+  },
+  {
+    "sortOrder": 10,
+    "format": "multiple_choice",
+    "question": "サービスレベルアグリーメント（SLA）の説明として、最も適切なものはどれか。",
+    "answer": "ア",
+    "explanation": "SLAは品質の約束であり、未達時の対応（返金など）も定められます。構成（単一インスタンスか冗長構成か）によって保証値が変わります。",
+    "isTrial": true,
+    "choices": {
+      "ア": "提供事業者が保証する稼働率などの品質水準を定めたもの",
+      "イ": "利用者が支払う金額の上限を定めたもの",
+      "ウ": "セキュリティ設定の推奨値をまとめたもの",
+      "エ": "障害発生時の技術的な原因分析書"
+    }
+  },
+  {
+    "sortOrder": 11,
+    "format": "true_false",
+    "question": "リソースグループは、関連するリソースをまとめて管理・削除するための入れ物である。",
+    "answer": "○",
+    "explanation": "権限の付与やタグ付け、まとめての削除に使います。設計時に環境や用途で分けておくと運用しやすくなります。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 12,
+    "format": "true_false",
+    "question": "Azure Policyは、作成されるリソースが組織のルールに沿っているかを評価・強制できる。",
+    "answer": "○",
+    "explanation": "許可するリージョンやSKUの制限、タグの必須化などを定義できます。権限（RBAC）と組み合わせて統制します。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 13,
+    "format": "true_false",
+    "question": "可用性ゾーンを使うと、データセンター単位の障害に備えることができる。",
+    "answer": "○",
+    "explanation": "ゾーンは電源やネットワークが独立しています。複数ゾーンに分散配置することで単一障害点を減らせます。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 14,
+    "format": "true_false",
+    "question": "従量課金制のサービスは、リソースを停止しても常に同額が課金される。",
+    "answer": "×",
+    "explanation": "停止や割り当て解除で計算リソースの課金は止まりますが、ディスクや固定IPなど、残るものには課金が続く場合があります。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 15,
+    "format": "true_false",
+    "question": "Azure Blob Storageは、画像やログなどの非構造化データの保存に向いている。",
+    "answer": "○",
+    "explanation": "アクセス頻度に応じたアクセス層（ホット、クール、アーカイブ）を選ぶことで費用を抑えられます。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 16,
+    "format": "true_false",
+    "question": "RBAC（ロールベースのアクセス制御）は、利用者ごとに個別の権限を都度設定することを基本とする。",
+    "answer": "×",
+    "explanation": "役割（ロール）に権限をまとめ、利用者やグループに割り当てるのが基本です。個別設定は管理が煩雑になり、見落としが生じます。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 17,
+    "format": "true_false",
+    "question": "Azure Monitorは、メトリックやログを収集し、アラートを出すことができる。",
+    "answer": "○",
+    "explanation": "収集した情報を基に自動処理や通知につなげます。何を監視するかを先に決めておくことが重要です。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 18,
+    "format": "true_false",
+    "question": "クラウドの利点として、必要なときに必要な分だけ資源を増減できる弾力性がある。",
+    "answer": "○",
+    "explanation": "需要変動に合わせられるため、過剰投資を避けられます。ただし増減の設計と監視が伴わないと効果が出ません。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 19,
+    "format": "true_false",
+    "question": "ハイブリッドクラウドは、社内環境とクラウドを組み合わせて使う構成を指す。",
+    "answer": "○",
+    "explanation": "既存資産や法令要件で社内に残す部分と、拡張性を求める部分を分けて設計します。接続方式と認証の統合が課題になります。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 20,
+    "format": "true_false",
+    "question": "サービス正常性（Service Health）では、利用中のサービスに影響する障害や計画メンテナンスの情報を確認できる。",
+    "answer": "○",
+    "explanation": "自分のリソースに関係する情報に絞って確認でき、通知の設定もできます。障害切り分けの初手として使えます。",
+    "isTrial": false
+  }
+]

@@ -1,0 +1,192 @@
+[
+  {
+    "sortOrder": 1,
+    "format": "true_false",
+    "question": "BIOS/UEFIは、OS起動前にハードウェア初期化や起動処理に関係する。",
+    "answer": "○",
+    "explanation": "ファームウェアとして起動順序やハードウェア設定を管理します。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 2,
+    "format": "true_false",
+    "question": "SSDは、一般にHDDより機械的な可動部品が少ない。",
+    "answer": "○",
+    "explanation": "SSDはフラッシュメモリを利用し、衝撃やランダムアクセス性能で利点があります。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 3,
+    "format": "true_false",
+    "question": "IPアドレスが169.254.x.xの場合、DHCPからアドレスを取得できなかった可能性がある。",
+    "answer": "○",
+    "explanation": "APIPAによる自動割当の範囲で、DHCP問題の手掛かりになります。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 4,
+    "format": "true_false",
+    "question": "マルウェア感染が疑われる場合、証拠や影響を確認せずに必ず最初にOSを再インストールする。",
+    "answer": "×",
+    "explanation": "状況確認、隔離、スキャン、バックアップ方針などを考えて対応します。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 5,
+    "format": "true_false",
+    "question": "静電気対策として、部品交換時にESDストラップを使うことがある。",
+    "answer": "○",
+    "explanation": "静電気放電は部品故障の原因になるため、ESD対策が重要です。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 6,
+    "format": "multiple_choice",
+    "question": "パソコンの電源が入らない場合に、最初に確認することとして最も適切なものはどれか。",
+    "answer": "ア",
+    "explanation": "切り分けは、影響が小さく確認しやすいところから行います。いきなり交換や再インストールを行うと、原因が分からないまま被害が広がります。",
+    "isTrial": true,
+    "choices": {
+      "ア": "電源ケーブルの接続とコンセントの通電",
+      "イ": "OSの再インストール",
+      "ウ": "マザーボードの交換",
+      "エ": "BIOSの書き換え"
+    }
+  },
+  {
+    "sortOrder": 7,
+    "format": "multiple_choice",
+    "question": "SSDがHDDと比べて優れている点として、最も適切なものはどれか。",
+    "answer": "ウ",
+    "explanation": "SSDは高速で静か、衝撃に強い一方、書き換え回数には限りがあり、故障時のデータ復旧はHDDより難しいことがあります。",
+    "isTrial": true,
+    "choices": {
+      "ア": "容量あたりの価格が必ず安い",
+      "イ": "書き換え回数の制限がない",
+      "ウ": "可動部が無く、読み書きが高速で衝撃に強い",
+      "エ": "データの復旧が常に容易である"
+    }
+  },
+  {
+    "sortOrder": 8,
+    "format": "multiple_choice",
+    "question": "ノートPCが無線LANに接続できないとき、確認する項目として最も適切でないものはどれか。",
+    "answer": "エ",
+    "explanation": "症状に関係する要素から順に確認します。関係のない項目を調べても切り分けは進みません。",
+    "isTrial": true,
+    "choices": {
+      "ア": "無線のスイッチや機内モードの状態",
+      "イ": "SSIDとパスワードの誤り",
+      "ウ": "アクセスポイントの電源と電波状況",
+      "エ": "プリンタのトナー残量"
+    }
+  },
+  {
+    "sortOrder": 9,
+    "format": "multiple_choice",
+    "question": "利用者のPCがマルウェア感染の疑いがある場合、最初に行う対応として最も適切なものはどれか。",
+    "answer": "イ",
+    "explanation": "拡散を止めることが最優先です。初期化は証拠を失い、原因究明と再発防止ができなくなります。",
+    "isTrial": true,
+    "choices": {
+      "ア": "そのまま業務を続けさせる",
+      "イ": "ネットワークから切り離し、担当部署へ連絡する",
+      "ウ": "ハードディスクを初期化する",
+      "エ": "個人でウイルス対策ソフトを購入させる"
+    }
+  },
+  {
+    "sortOrder": 10,
+    "format": "multiple_choice",
+    "question": "RAM（メインメモリ）の説明として、最も適切なものはどれか。",
+    "answer": "ウ",
+    "explanation": "RAMは揮発性で、電源を切ると内容が消えます。容量が不足するとスワップが増え、体感速度が大きく落ちます。",
+    "isTrial": true,
+    "choices": {
+      "ア": "電源を切ってもデータが保持される記憶装置",
+      "イ": "OSやアプリを永続的に保存する装置",
+      "ウ": "実行中のプログラムやデータを一時的に保持する装置",
+      "エ": "画面表示専用の記憶装置"
+    }
+  },
+  {
+    "sortOrder": 11,
+    "format": "true_false",
+    "question": "パソコンの内部を清掃する際は、電源を切り、電源ケーブルを抜いてから作業する。",
+    "answer": "○",
+    "explanation": "感電や部品破損を防ぐ基本手順です。ノートPCではバッテリーの扱いにも注意します。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 12,
+    "format": "true_false",
+    "question": "USBメモリは、書き込み中に抜いてもデータが壊れることはない。",
+    "answer": "×",
+    "explanation": "書き込み中の取り外しはファイル破損の原因になります。取り外し操作を行ってから抜きます。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 13,
+    "format": "true_false",
+    "question": "モニタに何も映らない場合、映像ケーブルの接続と入力切替の確認は有効な切り分けである。",
+    "answer": "○",
+    "explanation": "本体側の故障と決めつける前に、表示経路の設定と接続を確認します。別のケーブルやモニタで試すと切り分けが進みます。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 14,
+    "format": "true_false",
+    "question": "OSの更新プログラムは、既知の脆弱性を修正する目的でも提供される。",
+    "answer": "○",
+    "explanation": "機能追加だけでなく安全性の維持に不可欠です。適用前にバックアップを取り、業務影響を考慮して計画します。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 15,
+    "format": "true_false",
+    "question": "プリンタが印刷しない場合、印刷ジョブの滞留（キュー）の確認は有効な対処である。",
+    "answer": "○",
+    "explanation": "エラーで止まったジョブが後続をふさぐことがあります。ジョブの削除とスプーラの再起動で復旧する場合があります。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 16,
+    "format": "true_false",
+    "question": "ノートPCのバッテリーが膨張している場合でも、そのまま使用を続けて問題ない。",
+    "answer": "×",
+    "explanation": "発火や破損の危険があります。使用を中止し、指定された方法で交換・廃棄します。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 17,
+    "format": "true_false",
+    "question": "利用者からの問い合わせでは、症状の再現条件や発生時期を聞き取ることが切り分けに役立つ。",
+    "answer": "○",
+    "explanation": "いつから、どの操作で、どの範囲に起きるかを整理すると、原因候補を絞れます。変更履歴の確認も有効です。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 18,
+    "format": "true_false",
+    "question": "作業前にデータのバックアップを取ることは、修理・交換作業の基本手順に含まれる。",
+    "answer": "○",
+    "explanation": "作業中の事故でデータを失うと取り返しがつきません。取得と復元可否の確認まで行います。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 19,
+    "format": "true_false",
+    "question": "静電気対策のESDストラップは、金属部分に触れずに作業するための道具である。",
+    "answer": "×",
+    "explanation": "ESDストラップは体と機器の電位を合わせ、静電気放電を防ぐための道具です。接地して使います。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 20,
+    "format": "true_false",
+    "question": "同じ症状が複数の利用者で発生している場合、個別端末より共通基盤（ネットワークやサーバ）を疑うほうが効率的である。",
+    "answer": "○",
+    "explanation": "影響範囲から原因の階層を推定します。1人だけなら端末や設定、全員なら共有部分を先に確認します。",
+    "isTrial": false
+  }
+]

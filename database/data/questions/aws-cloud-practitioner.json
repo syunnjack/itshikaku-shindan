@@ -1,0 +1,192 @@
+[
+  {
+    "sortOrder": 1,
+    "format": "true_false",
+    "question": "AWSの責任共有モデルでは、クラウドのセキュリティはAWSだけがすべて担当する。",
+    "answer": "×",
+    "explanation": "AWSはクラウド自体を、利用者はクラウド内の設定やデータ保護などを担います。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 2,
+    "format": "true_false",
+    "question": "Amazon S3は、オブジェクトストレージサービスである。",
+    "answer": "○",
+    "explanation": "S3はファイルをオブジェクトとしてバケットに保存する代表的なストレージサービスです。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 3,
+    "format": "true_false",
+    "question": "AWS IAMは、ユーザー、ロール、ポリシーを使ってアクセス権限を管理する。",
+    "answer": "○",
+    "explanation": "IAMにより最小権限を設計し、AWSリソースへの操作を制御します。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 4,
+    "format": "true_false",
+    "question": "Amazon EC2は、サーバレス関数を実行するためだけのサービスである。",
+    "answer": "×",
+    "explanation": "EC2は仮想サーバを提供するサービスです。サーバレス関数はAWS Lambdaです。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 5,
+    "format": "true_false",
+    "question": "AWS Organizationsは、複数AWSアカウントの一元管理に利用できる。",
+    "answer": "○",
+    "explanation": "組織単位でアカウント管理やポリシー適用を行えます。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 6,
+    "format": "multiple_choice",
+    "question": "AWSの責任共有モデルにおいて、利用者側の責任として最も適切なものはどれか。",
+    "answer": "エ",
+    "explanation": "AWSは「クラウド本体のセキュリティ」、利用者は「クラウド内のセキュリティ」を担います。ア〜ウはAWS側の責任範囲です。",
+    "isTrial": true,
+    "choices": {
+      "ア": "データセンターの物理的な入退室管理",
+      "イ": "ハイパーバイザの脆弱性対応",
+      "ウ": "ネットワーク機器の保守",
+      "エ": "IAMの権限設定と、保存するデータの管理"
+    }
+  },
+  {
+    "sortOrder": 7,
+    "format": "multiple_choice",
+    "question": "Amazon S3の説明として、最も適切なものはどれか。",
+    "answer": "イ",
+    "explanation": "S3はオブジェクトストレージです。アはEC2、ウはRDS、エはLambdaの説明です。用途で分類すると混同しにくくなります。",
+    "isTrial": true,
+    "choices": {
+      "ア": "仮想サーバを起動して任意のOSを動かすサービス",
+      "イ": "オブジェクト単位でデータを保存する、容量制限を意識しないストレージサービス",
+      "ウ": "リレーショナルデータベースを提供するサービス",
+      "エ": "コードを実行し、実行時間に応じて課金されるサービス"
+    }
+  },
+  {
+    "sortOrder": 8,
+    "format": "multiple_choice",
+    "question": "アベイラビリティゾーン（AZ）の説明として、最も適切なものはどれか。",
+    "answer": "ウ",
+    "explanation": "AZは障害の影響を分けるための区画です。アはリージョン、イはVPC、エはエッジロケーション（CloudFront）の説明です。複数AZ構成が可用性向上の基本になります。",
+    "isTrial": true,
+    "choices": {
+      "ア": "世界を大きく分けた地理的な区分",
+      "イ": "利用者ごとに割り当てられる仮想ネットワーク",
+      "ウ": "リージョン内で電源や設備が分離された、独立性の高いデータセンター群",
+      "エ": "コンテンツを利用者の近くから配信する拠点"
+    }
+  },
+  {
+    "sortOrder": 9,
+    "format": "multiple_choice",
+    "question": "AWSの料金の考え方として、最も適切なものはどれか。",
+    "answer": "ア",
+    "explanation": "従量課金が基本で、リザーブドインスタンスやSavings Plansのような割引の仕組みがあります。データ転送も課金対象になり得ます。",
+    "isTrial": true,
+    "choices": {
+      "ア": "使った分だけ支払い、事前の契約で割引を受けられる場合がある",
+      "イ": "利用の有無にかかわらず、月額固定で課金される",
+      "ウ": "初期費用が必ず発生し、解約時に返金される",
+      "エ": "通信量は課金対象にならない"
+    }
+  },
+  {
+    "sortOrder": 10,
+    "format": "multiple_choice",
+    "question": "IAMの利用方針として、最も適切なものはどれか。",
+    "answer": "エ",
+    "explanation": "最小権限とMFAが基本です。ルートユーザーは初期設定など限られた用途にとどめ、鍵をコードに書かないことも重要です。",
+    "isTrial": true,
+    "choices": {
+      "ア": "ルートユーザーで日常の作業を行う",
+      "イ": "全員に管理者権限を付与し、作業を止めない",
+      "ウ": "アクセスキーをソースコードに直接記述する",
+      "エ": "役割ごとに必要最小限の権限を与え、多要素認証を有効にする"
+    }
+  },
+  {
+    "sortOrder": 11,
+    "format": "true_false",
+    "question": "Amazon CloudWatchは、リソースの監視やログの収集に利用できる。",
+    "answer": "○",
+    "explanation": "指標の監視、アラーム、ログの保存と検索ができます。閾値超過時の通知や自動処理と組み合わせて運用します。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 12,
+    "format": "true_false",
+    "question": "Auto Scalingは、負荷に応じてインスタンス数を増減させる仕組みである。",
+    "answer": "○",
+    "explanation": "需要に合わせて台数を調整し、可用性と費用の両立を図ります。起動時間や状態の持ち方を設計しておく必要があります。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 13,
+    "format": "true_false",
+    "question": "リージョンを選ぶ際は、利用者との距離（遅延）や法令上の要件を考慮する必要がある。",
+    "answer": "○",
+    "explanation": "遅延、料金、提供サービスの違い、データの所在に関する要件が判断材料になります。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 14,
+    "format": "true_false",
+    "question": "AWS Trusted Advisorは、コストや性能、セキュリティなどの観点で改善点を助言する。",
+    "answer": "○",
+    "explanation": "未使用資源や公開設定の行き過ぎなどを指摘します。サポートプランにより確認できる項目が異なります。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 15,
+    "format": "true_false",
+    "question": "スポットインスタンスは、中断される可能性がある代わりに割安で利用できる。",
+    "answer": "○",
+    "explanation": "中断に耐えられるバッチ処理などに向きます。停止できない処理には向きません。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 16,
+    "format": "true_false",
+    "question": "S3に保存したデータは、既定で誰でもインターネットから閲覧できる。",
+    "answer": "×",
+    "explanation": "既定では非公開です。公開設定やポリシーの誤りが情報漏えいの原因になるため、ブロックパブリックアクセスの設定を確認します。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 17,
+    "format": "true_false",
+    "question": "AWS Well-Architected フレームワークは、設計を見直すための観点を示したものである。",
+    "answer": "○",
+    "explanation": "運用、セキュリティ、信頼性、性能効率、コスト最適化、持続可能性などの柱で構成され、設計の妥当性を点検する枠組みとして使われます。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 18,
+    "format": "true_false",
+    "question": "Amazon RDSでは、バックアップやパッチ適用などの運用作業をAWS側に任せられる。",
+    "answer": "○",
+    "explanation": "マネージドサービスであるため運用負荷が下がります。その分、OSへの自由な操作はできません。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 19,
+    "format": "true_false",
+    "question": "AWSの利用料金は、無料利用枠を超えても自動的に停止するため、想定外の請求は発生しない。",
+    "answer": "×",
+    "explanation": "超過分は課金されます。予算アラートや使用量の監視を設定して、早めに気付ける状態にしておく必要があります。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 20,
+    "format": "true_false",
+    "question": "VPCは、利用者ごとに論理的に分離された仮想ネットワークを構成する仕組みである。",
+    "answer": "○",
+    "explanation": "サブネット、ルートテーブル、セキュリティグループなどで通信範囲を設計します。公開が必要な部分だけを外部に出す構成が基本です。",
+    "isTrial": false
+  }
+]

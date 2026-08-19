@@ -1,0 +1,192 @@
+[
+  {
+    "sortOrder": 1,
+    "format": "true_false",
+    "question": "ITIL 4では、サービス提供者と利用者が価値を共創する考え方が重視される。",
+    "answer": "○",
+    "explanation": "価値は一方的に提供されるのではなく、利用者との関係の中で共創されます。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 2,
+    "format": "true_false",
+    "question": "インシデント管理の目的は、通常のサービス運用をできるだけ早く回復することである。",
+    "answer": "○",
+    "explanation": "根本原因の完全解決より、サービス復旧を優先します。根本原因は問題管理で扱います。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 3,
+    "format": "true_false",
+    "question": "問題管理は、インシデントの根本原因を特定し、再発防止につなげる活動である。",
+    "answer": "○",
+    "explanation": "問題管理では既知のエラーや恒久対策も扱います。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 4,
+    "format": "true_false",
+    "question": "変更管理では、すべての変更を承認なしで即時実施することが推奨される。",
+    "answer": "×",
+    "explanation": "変更はリスクや影響を評価し、適切な承認や管理のもとで実施します。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 5,
+    "format": "true_false",
+    "question": "サービスデスクは、利用者との単一窓口として機能することがある。",
+    "answer": "○",
+    "explanation": "問い合わせ、障害報告、依頼受付などの窓口として重要です。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 6,
+    "format": "multiple_choice",
+    "question": "インシデント管理の目的として、最も適切なものはどれか。",
+    "answer": "イ",
+    "explanation": "インシデント管理は復旧の速さが目的です。根本原因の除去は問題管理（ア）、変更の評価は変更実現（ウ）の役割です。",
+    "isTrial": true,
+    "choices": {
+      "ア": "根本原因を特定して恒久的に除去する",
+      "イ": "サービスをできるだけ早く通常の状態に戻す",
+      "ウ": "変更に伴うリスクを評価する",
+      "エ": "サービスの利用料金を決める"
+    }
+  },
+  {
+    "sortOrder": 7,
+    "format": "multiple_choice",
+    "question": "問題管理の役割として、最も適切なものはどれか。",
+    "answer": "エ",
+    "explanation": "問題管理は原因の除去と再発防止が目的です。既知のエラーと回避策を記録し、インシデント対応を早める役割もあります。",
+    "isTrial": true,
+    "choices": {
+      "ア": "利用者からの依頼を受け付ける窓口を運営する",
+      "イ": "サービスの提供時間を定義する",
+      "ウ": "変更を計画どおりに実施する",
+      "エ": "インシデントの原因を分析し、再発を防ぐ"
+    }
+  },
+  {
+    "sortOrder": 8,
+    "format": "multiple_choice",
+    "question": "サービス要求管理が扱う内容として、最も適切なものはどれか。",
+    "answer": "ウ",
+    "explanation": "あらかじめ手順が決まっている依頼を効率よく処理する活動です。障害対応（インシデント管理）とは区別します。",
+    "isTrial": true,
+    "choices": {
+      "ア": "サービス停止を伴う重大障害の復旧",
+      "イ": "サービスの設計方針の決定",
+      "ウ": "パスワード再発行や機器貸与など、定型的な依頼への対応",
+      "エ": "サプライヤとの契約交渉"
+    }
+  },
+  {
+    "sortOrder": 9,
+    "format": "multiple_choice",
+    "question": "変更実現（変更管理）の目的として、最も適切なものはどれか。",
+    "answer": "ア",
+    "explanation": "変更を止めるのではなく、影響を見極めて安全に通すことが目的です。緊急変更の手順も併せて定義します。",
+    "isTrial": true,
+    "choices": {
+      "ア": "変更に伴うリスクを評価し、成功率を高める",
+      "イ": "変更をすべて禁止する",
+      "ウ": "変更の記録を残さず、迅速に進める",
+      "エ": "障害の一次対応を行う"
+    }
+  },
+  {
+    "sortOrder": 10,
+    "format": "multiple_choice",
+    "question": "サービスデスクの主な役割として、最も適切なものはどれか。",
+    "answer": "イ",
+    "explanation": "単一窓口（SPOC）として受付・記録・一次対応を担い、必要に応じて専門チームへ引き継ぎます。",
+    "isTrial": true,
+    "choices": {
+      "ア": "サーバの設計を行う",
+      "イ": "利用者との単一の窓口となり、問い合わせや障害連絡を受け付ける",
+      "ウ": "予算計画を策定する",
+      "エ": "ソフトウェアを開発する"
+    }
+  },
+  {
+    "sortOrder": 11,
+    "format": "true_false",
+    "question": "ITILでは、価値は提供者だけが作るものであり、利用者との共創という考え方は含まれない。",
+    "answer": "×",
+    "explanation": "ITIL 4では、提供者と利用者が共同で価値を生み出す（共創）ことが中心的な考え方です。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 12,
+    "format": "true_false",
+    "question": "SLAは、提供者と利用者の間で合意したサービス品質の水準を定めたものである。",
+    "answer": "○",
+    "explanation": "測定方法と報告の頻度まで決めておかないと、達成・未達の判断ができません。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 13,
+    "format": "true_false",
+    "question": "継続的改善は、大きな改革のときだけ実施するものである。",
+    "answer": "×",
+    "explanation": "小さな改善を継続して積み上げる考え方です。現状把握、目標設定、実行、評価を繰り返します。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 14,
+    "format": "true_false",
+    "question": "構成管理では、サービスを構成する要素とその関係を把握し、記録を維持する。",
+    "answer": "○",
+    "explanation": "影響範囲の把握や変更の計画に使います。記録が実態とずれると、判断を誤る原因になります。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 15,
+    "format": "true_false",
+    "question": "既知のエラーとして回避策が記録されていれば、同種のインシデント対応を早められる。",
+    "answer": "○",
+    "explanation": "恒久対策の前でも、暫定手順を共有することで復旧時間を短縮できます。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 16,
+    "format": "true_false",
+    "question": "サービス継続管理は、大規模障害や災害時にサービスを回復させるための備えを扱う。",
+    "answer": "○",
+    "explanation": "目標復旧時間や代替手段を定め、訓練で実効性を確認します。日常の可用性管理とは扱う規模が異なります。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 17,
+    "format": "true_false",
+    "question": "変更の緊急度が高い場合でも、記録を残さずに実施してよい。",
+    "answer": "×",
+    "explanation": "緊急変更にも手順があります。事後でも承認と記録を残さないと、原因究明や再発防止ができません。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 18,
+    "format": "true_false",
+    "question": "インシデントの優先度は、緊急度と影響度の組み合わせで決めるのが一般的である。",
+    "answer": "○",
+    "explanation": "影響する利用者数や業務停止の度合いと、対応の急ぎ具合で判断します。基準を事前に定めておくとぶれません。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 19,
+    "format": "true_false",
+    "question": "サプライヤ管理では、外部委託先の品質や契約内容を管理する。",
+    "answer": "○",
+    "explanation": "サービス品質は委託先にも左右されます。評価と定期的な見直しの仕組みが必要です。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 20,
+    "format": "true_false",
+    "question": "ITILは特定の製品や技術の導入手順を定めた規格である。",
+    "answer": "×",
+    "explanation": "ITサービスマネジメントの実践知をまとめたガイダンスで、製品には依存しません。組織に合わせて取捨選択します。",
+    "isTrial": false
+  }
+]

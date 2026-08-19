@@ -1,0 +1,192 @@
+[
+  {
+    "sortOrder": 1,
+    "format": "true_false",
+    "question": "XSSは、Webページに悪意あるスクリプトを混入させ、利用者のブラウザで実行させる攻撃である。",
+    "answer": "○",
+    "explanation": "入力値のエスケープやCSPなどが対策になります。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 2,
+    "format": "true_false",
+    "question": "SQLインジェクション対策として、プレースホルダを用いたパラメタライズドクエリが有効である。",
+    "answer": "○",
+    "explanation": "SQL文と値を分離することで、意図しないSQL構造への改変を防ぎやすくなります。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 3,
+    "format": "true_false",
+    "question": "デジタル署名は、送信者の秘密鍵で検証し、受信者の公開鍵で署名を作成する。",
+    "answer": "×",
+    "explanation": "署名は送信者の秘密鍵で作成し、送信者の公開鍵で検証します。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 4,
+    "format": "true_false",
+    "question": "CSRFは、利用者が認証済みのサイトに対して意図しないリクエストを送らされる攻撃である。",
+    "answer": "○",
+    "explanation": "CSRFトークンやSameSite Cookieなどで対策します。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 5,
+    "format": "true_false",
+    "question": "ゼロトラストでは、社内ネットワーク内であれば常に信頼できるものとして扱う。",
+    "answer": "×",
+    "explanation": "ゼロトラストは内外を問わず検証し、継続的に信頼性を確認する考え方です。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 6,
+    "format": "multiple_choice",
+    "question": "クロスサイトスクリプティング（XSS）の対策として、最も適切なものはどれか。",
+    "answer": "イ",
+    "explanation": "XSSは、利用者の入力がHTMLやJavaScriptとして解釈されることで成立します。対策の中心は出力時のエスケープです。アはSQLインジェクション、ウは盗聴、エは漏えい時の被害軽減の対策です。",
+    "isTrial": true,
+    "choices": {
+      "ア": "SQL文をプレースホルダで組み立てる",
+      "イ": "出力時に文脈に応じたエスケープ処理を行う",
+      "ウ": "通信をTLSで暗号化する",
+      "エ": "パスワードをハッシュ化して保存する"
+    }
+  },
+  {
+    "sortOrder": 7,
+    "format": "multiple_choice",
+    "question": "CSRF（クロスサイトリクエストフォージェリ）の対策として、最も適切なものはどれか。",
+    "answer": "ウ",
+    "explanation": "CSRFは、利用者の正規のセッションを悪用して意図しない操作を行わせる攻撃です。ワンタイムトークンの照合が基本対策です。エはむしろセッションID漏えいの原因になります。",
+    "isTrial": true,
+    "choices": {
+      "ア": "入力値の文字種を制限する",
+      "イ": "パスワードの有効期限を設ける",
+      "ウ": "推測できないトークンをフォームに埋め込み、送信時に照合する",
+      "エ": "セッションIDをURLに含めて受け渡す"
+    }
+  },
+  {
+    "sortOrder": 8,
+    "format": "multiple_choice",
+    "question": "公開鍵基盤（PKI）における認証局（CA）の役割として、最も適切なものはどれか。",
+    "answer": "ア",
+    "explanation": "CAは公開鍵の持ち主を保証します。秘密鍵は本人だけが保持するものであり、CAが預かるものではありません。失効管理（CRLやOCSP）も重要な役割です。",
+    "isTrial": true,
+    "choices": {
+      "ア": "公開鍵と所有者の対応を証明する電子証明書を発行する",
+      "イ": "利用者の秘密鍵を預かり、代理で復号する",
+      "ウ": "通信内容を暗号化して転送する",
+      "エ": "パスワードの複雑さを検査する"
+    }
+  },
+  {
+    "sortOrder": 9,
+    "format": "multiple_choice",
+    "question": "ディジタル署名によって確認できることとして、最も適切なものはどれか。",
+    "answer": "エ",
+    "explanation": "署名は真正性と完全性を確認する仕組みです。秘密にするのは暗号化の役割、時刻の証明はタイムスタンプの役割です。",
+    "isTrial": true,
+    "choices": {
+      "ア": "通信経路が暗号化されていること",
+      "イ": "受信者だけが内容を読めること",
+      "ウ": "送信された時刻が正確であること",
+      "エ": "作成者が本人であることと、内容が改ざんされていないこと"
+    }
+  },
+  {
+    "sortOrder": 10,
+    "format": "multiple_choice",
+    "question": "SIEMの説明として、最も適切なものはどれか。",
+    "answer": "ウ",
+    "explanation": "SIEMは分散したログを集め、単体では見えない兆候を相関で見つけます。検知の精度はログの網羅性と、運用でのルール調整に左右されます。",
+    "isTrial": true,
+    "choices": {
+      "ア": "端末の脆弱性を自動で修正するツール",
+      "イ": "暗号鍵を安全に保管する専用機器",
+      "ウ": "複数機器のログを集約し、相関分析して異常を検知する仕組み",
+      "エ": "通信を暗号化する仮想私設網"
+    }
+  },
+  {
+    "sortOrder": 11,
+    "format": "true_false",
+    "question": "ポートスキャンは、対象システムで開いているポートやサービスを調べる行為である。",
+    "answer": "○",
+    "explanation": "攻撃の準備段階として行われることが多く、不要なサービスの停止やアクセス制御で露出を減らすことが対策になります。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 12,
+    "format": "true_false",
+    "question": "多要素認証では、パスワードと秘密の質問を組み合わせれば、異なる要素を用いたことになる。",
+    "answer": "×",
+    "explanation": "どちらも「知識」であり、要素としては同じです。所持（トークン、スマートフォン）や生体を組み合わせて初めて多要素になります。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 13,
+    "format": "true_false",
+    "question": "WAFは、Webアプリケーションへの通信内容を検査し、攻撃とみられる要求を遮断する。",
+    "answer": "○",
+    "explanation": "SQLインジェクションやXSSなどの検知に用います。ただし根本対策はアプリ側の修正であり、WAFは時間を稼ぐ層と位置付けます。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 14,
+    "format": "true_false",
+    "question": "ソルトを付けてパスワードをハッシュ化すると、同じパスワードでも利用者ごとに異なるハッシュ値になる。",
+    "answer": "○",
+    "explanation": "事前計算表（レインボーテーブル）による解読を難しくします。ストレッチング（繰り返し計算）と併用するのが一般的です。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 15,
+    "format": "true_false",
+    "question": "TLSでは、通信の暗号化は行うが、サーバの正当性の確認はできない。",
+    "answer": "×",
+    "explanation": "サーバ証明書により、接続先が正しいことを確認できます。暗号化と認証の両方が役割です。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 16,
+    "format": "true_false",
+    "question": "ペネトレーションテストは、実際に侵入を試みて、防御が突破できるかを確認する手法である。",
+    "answer": "○",
+    "explanation": "脆弱性診断が「弱点の洗い出し」であるのに対し、侵入テストは「悪用できるか」を確かめます。実施範囲と許可の取り決めが必須です。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 17,
+    "format": "true_false",
+    "question": "ゼロトラストの考え方では、社内ネットワークからの通信であれば無条件に信頼してよい。",
+    "answer": "×",
+    "explanation": "ゼロトラストは、場所によらず毎回検証する考え方です。利用者、端末の状態、アクセス先ごとに認可を判断します。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 18,
+    "format": "true_false",
+    "question": "フォレンジックでは、調査対象のディスクをそのまま操作せず、複製を作成して解析することが原則である。",
+    "answer": "○",
+    "explanation": "原本を変更すると証拠能力を失います。ハッシュ値による同一性の確認と、取り扱い経緯の記録（証拠保全の連鎖）が求められます。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 19,
+    "format": "true_false",
+    "question": "DNSキャッシュポイズニングは、偽の名前解決結果を覚え込ませ、利用者を別のサーバへ誘導する攻撃である。",
+    "answer": "○",
+    "explanation": "問い合わせIDの推測や応答の偽装で成立します。DNSSECによる応答の検証や、ランダム化による推測困難化が対策になります。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 20,
+    "format": "true_false",
+    "question": "サプライチェーン攻撃では、標的組織を直接狙わず、取引先やソフトウェアの配布経路が悪用されることがある。",
+    "answer": "○",
+    "explanation": "更新プログラムや外部部品に不正なコードが混入する例があります。取引先の管理と、部品構成（SBOM）の把握が対策の起点になります。",
+    "isTrial": false
+  }
+]

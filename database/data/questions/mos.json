@@ -1,0 +1,192 @@
+[
+  {
+    "sortOrder": 1,
+    "format": "true_false",
+    "question": "Excelの相対参照は、数式をコピーすると参照先がコピー先に応じて変化する。",
+    "answer": "○",
+    "explanation": "A1のような相対参照は、コピー位置に応じて参照セルがずれます。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 2,
+    "format": "true_false",
+    "question": "Excelの絶対参照は、$A$1のように列と行を固定できる。",
+    "answer": "○",
+    "explanation": "コピーしても参照セルを固定したい場合に使います。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 3,
+    "format": "true_false",
+    "question": "Wordのスタイル機能を使うと、見出しや本文の書式を一括管理しやすい。",
+    "answer": "○",
+    "explanation": "スタイルを使うと目次作成や文書全体の整形が効率化できます。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 4,
+    "format": "true_false",
+    "question": "PowerPointのスライドマスターは、各スライドの共通デザイン管理に使える。",
+    "answer": "○",
+    "explanation": "フォント、背景、プレースホルダーなどを共通管理できます。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 5,
+    "format": "true_false",
+    "question": "Excelのフィルター機能は、データを完全に削除するためだけの機能である。",
+    "answer": "×",
+    "explanation": "フィルターは条件に合う行を表示する機能で、元データを削除するものではありません。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 6,
+    "format": "multiple_choice",
+    "question": "Excelで、数式をコピーしても参照先を固定したいときに使う記述はどれか。",
+    "answer": "ウ",
+    "explanation": "$を付けた部分が固定されます。$A$1は行も列も固定、A$1は行だけ、$A1は列だけ固定です。",
+    "isTrial": true,
+    "choices": {
+      "ア": "A1",
+      "イ": "A$1のみ",
+      "ウ": "$A$1",
+      "エ": "参照は常に固定される"
+    }
+  },
+  {
+    "sortOrder": 7,
+    "format": "multiple_choice",
+    "question": "Excelで、条件に一致するセルの個数を求める関数はどれか。",
+    "answer": "イ",
+    "explanation": "COUNTIFは条件に合うセルを数えます。合計はSUMIF、平均はAVERAGEIFが条件付きの関数です。",
+    "isTrial": true,
+    "choices": {
+      "ア": "SUM",
+      "イ": "COUNTIF",
+      "ウ": "AVERAGE",
+      "エ": "VLOOKUP"
+    }
+  },
+  {
+    "sortOrder": 8,
+    "format": "multiple_choice",
+    "question": "Wordで、章ごとにページ番号の書式や向きを変えたいときに使う機能はどれか。",
+    "answer": "エ",
+    "explanation": "セクション区切りを入れると、区切りごとにページ設定やヘッダー・フッターを変えられます。単なる改ページでは設定は分かれません。",
+    "isTrial": true,
+    "choices": {
+      "ア": "改ページ",
+      "イ": "段組み",
+      "ウ": "インデント",
+      "エ": "セクション区切り"
+    }
+  },
+  {
+    "sortOrder": 9,
+    "format": "multiple_choice",
+    "question": "PowerPointで、全スライドに共通のロゴや書式を適用したいときに編集する場所はどれか。",
+    "answer": "ア",
+    "explanation": "スライドマスターを直すと、対応するレイアウトのスライドへまとめて反映されます。1枚ずつ直す手間を省けます。",
+    "isTrial": true,
+    "choices": {
+      "ア": "スライドマスター",
+      "イ": "ノートペイン",
+      "ウ": "アニメーションウィンドウ",
+      "エ": "スライドショーの設定"
+    }
+  },
+  {
+    "sortOrder": 10,
+    "format": "multiple_choice",
+    "question": "Excelのテーブル機能（リストの書式設定）の利点として、最も適切なものはどれか。",
+    "answer": "ウ",
+    "explanation": "テーブルにすると範囲が自動拡張され、構造化参照でわかりやすい数式を書けます。集計行の表示も簡単です。",
+    "isTrial": true,
+    "choices": {
+      "ア": "ファイルサイズが必ず小さくなる",
+      "イ": "計算式が使えなくなる",
+      "ウ": "行を追加すると書式や数式が自動で引き継がれる",
+      "エ": "並べ替えができなくなる"
+    }
+  },
+  {
+    "sortOrder": 11,
+    "format": "true_false",
+    "question": "Excelのピボットテーブルは、元データを集計・分析しやすい形に組み替える機能である。",
+    "answer": "○",
+    "explanation": "行と列に項目を配置して集計します。元データが1行1件の形（表形式）で整っていることが前提です。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 12,
+    "format": "true_false",
+    "question": "Excelで印刷時に見出し行を各ページの先頭に繰り返し表示する設定がある。",
+    "answer": "○",
+    "explanation": "ページ設定の「印刷タイトル」で行を指定します。長い表を配布するときに読みやすくなります。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 13,
+    "format": "true_false",
+    "question": "Wordのスタイル機能を使うと、見出しの書式変更を一括で反映でき、目次の自動作成にも利用できる。",
+    "answer": "○",
+    "explanation": "手作業の書式設定では目次を自動生成できません。見出しレベルを正しく設定するのが要点です。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 14,
+    "format": "true_false",
+    "question": "Excelの絶対参照と相対参照は、数式をコピーしたときの参照の動き方が異なる。",
+    "answer": "○",
+    "explanation": "相対参照はコピー先に応じてずれ、絶対参照は固定されます。表計算の誤りで最も多い原因の1つです。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 15,
+    "format": "true_false",
+    "question": "PowerPointの発表者ツールでは、聴衆に見せる画面とは別に、ノートや次のスライドを確認できる。",
+    "answer": "○",
+    "explanation": "外部ディスプレイ接続時に使えます。事前に表示先の設定を確認しておくと本番で慌てません。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 16,
+    "format": "true_false",
+    "question": "Excelの条件付き書式は、セルの値に応じて自動で色や書式を変えられる。",
+    "answer": "○",
+    "explanation": "しきい値超過や重複の強調に使えます。ルールが増えすぎると見づらくなるため、目的を絞って使います。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 17,
+    "format": "true_false",
+    "question": "Wordの変更履歴を有効にすると、誰がどこを直したかを記録し、後から承認・却下できる。",
+    "answer": "○",
+    "explanation": "共同編集での確認に有効です。配布前にはコメントと履歴の削除を確認します。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 18,
+    "format": "true_false",
+    "question": "Excelのセル結合を多用すると、並べ替えや集計がしにくくなることがある。",
+    "answer": "○",
+    "explanation": "見た目は整いますが、データとしては扱いにくくなります。表として使うシートでは避けるのが無難です。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 19,
+    "format": "true_false",
+    "question": "VLOOKUP関数は、検索値より左側にある列の値を取得できる。",
+    "answer": "×",
+    "explanation": "VLOOKUPは検索列より右側しか取得できません。左側を取りたい場合はINDEXとMATCH、またはXLOOKUPを使います。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 20,
+    "format": "true_false",
+    "question": "ファイルをPDFで書き出すと、環境による書式の崩れを抑えて配布できる。",
+    "answer": "○",
+    "explanation": "フォントや余白の違いによるずれを防げます。編集してもらう必要がある場合は元の形式で渡します。",
+    "isTrial": false
+  }
+]

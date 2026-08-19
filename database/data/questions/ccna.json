@@ -1,0 +1,192 @@
+[
+  {
+    "sortOrder": 1,
+    "format": "true_false",
+    "question": "OSI参照モデルの第3層はネットワーク層であり、IPルーティングと関係する。",
+    "answer": "○",
+    "explanation": "ネットワーク層はIPアドレスや経路制御を扱います。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 2,
+    "format": "true_false",
+    "question": "スイッチは、通常MACアドレステーブルを使ってフレーム転送を行う。",
+    "answer": "○",
+    "explanation": "レイヤ2スイッチは送信元MACを学習し、宛先MACに応じて転送します。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 3,
+    "format": "true_false",
+    "question": "VLANは、物理的な配線を変更せずに論理的なブロードキャストドメインを分ける技術である。",
+    "answer": "○",
+    "explanation": "VLANにより部署や用途ごとに論理ネットワークを分離できます。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 4,
+    "format": "true_false",
+    "question": "デフォルトゲートウェイは、同一ネットワーク内の通信だけに必ず使用される。",
+    "answer": "×",
+    "explanation": "デフォルトゲートウェイは、宛先が別ネットワークのときに使われます。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 5,
+    "format": "true_false",
+    "question": "NATは、プライベートIPアドレスとグローバルIPアドレスの変換に利用される。",
+    "answer": "○",
+    "explanation": "NAT/PATにより内部ネットワークからインターネットへ通信しやすくなります。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 6,
+    "format": "multiple_choice",
+    "question": "OSI参照モデルで、IPアドレスを扱う層はどれか。",
+    "answer": "ウ",
+    "explanation": "IPはネットワーク層（第3層）です。MACアドレスはデータリンク層、ポート番号はトランスポート層で扱います。どの層の話かを先に判定すると解きやすくなります。",
+    "isTrial": true,
+    "choices": {
+      "ア": "データリンク層",
+      "イ": "トランスポート層",
+      "ウ": "ネットワーク層",
+      "エ": "アプリケーション層"
+    }
+  },
+  {
+    "sortOrder": 7,
+    "format": "multiple_choice",
+    "question": "VLANを使う主な目的として、最も適切なものはどれか。",
+    "answer": "イ",
+    "explanation": "VLANはブロードキャストドメインを分け、部門やセキュリティ要件ごとに区切ります。異なるVLAN間の通信にはルーティングが必要です。",
+    "isTrial": true,
+    "choices": {
+      "ア": "ケーブルの本数を増やす",
+      "イ": "物理構成を変えずに、論理的にネットワークを分割する",
+      "ウ": "IPアドレスの枯渇を解消する",
+      "エ": "無線の電波強度を上げる"
+    }
+  },
+  {
+    "sortOrder": 8,
+    "format": "multiple_choice",
+    "question": "デフォルトゲートウェイの役割として、最も適切なものはどれか。",
+    "answer": "エ",
+    "explanation": "宛先が同一ネットワークでない場合、通信はデフォルトゲートウェイへ送られます。イはDNS、ウはDHCPの役割です。",
+    "isTrial": true,
+    "choices": {
+      "ア": "同一セグメント内の端末を探す",
+      "イ": "ドメイン名をIPアドレスに変換する",
+      "ウ": "IPアドレスを自動で配布する",
+      "エ": "自分のネットワーク外へ出る通信の転送先になる"
+    }
+  },
+  {
+    "sortOrder": 9,
+    "format": "multiple_choice",
+    "question": "スイッチがフレームの転送先を決めるときに参照するものはどれか。",
+    "answer": "ア",
+    "explanation": "スイッチは第2層の機器でMACアドレスを見ます。IPとルーティングテーブルを見るのはルータ（第3層）です。",
+    "isTrial": true,
+    "choices": {
+      "ア": "宛先MACアドレスとMACアドレステーブル",
+      "イ": "宛先IPアドレスとルーティングテーブル",
+      "ウ": "送信元ポート番号",
+      "エ": "サブネットマスク"
+    }
+  },
+  {
+    "sortOrder": 10,
+    "format": "multiple_choice",
+    "question": "静的ルーティングと比べたときの動的ルーティングの利点として、最も適切なものはどれか。",
+    "answer": "ウ",
+    "explanation": "動的ルーティングは経路情報を交換して自動的に最適経路を選び直します。その分、設定と負荷は増えます。小規模で経路が固定なら静的が向きます。",
+    "isTrial": true,
+    "choices": {
+      "ア": "設定が常に単純になる",
+      "イ": "経路情報の交換が不要になる",
+      "ウ": "経路障害時に自動で別経路へ切り替えられる",
+      "エ": "ルータの負荷が必ず下がる"
+    }
+  },
+  {
+    "sortOrder": 11,
+    "format": "true_false",
+    "question": "プライベートIPアドレスは、インターネット上でそのまま一意に利用できる。",
+    "answer": "×",
+    "explanation": "組織内で自由に使える代わりに、インターネットへ出るときはNATでグローバルアドレスへ変換します。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 12,
+    "format": "true_false",
+    "question": "トランクポートは、複数のVLANのフレームを1本のリンクで運ぶために使う。",
+    "answer": "○",
+    "explanation": "タグ（IEEE 802.1Q）でVLANを識別します。アクセスポートは1つのVLANに所属する端末を接続するためのものです。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 13,
+    "format": "true_false",
+    "question": "スパニングツリープロトコル（STP）は、ループによるブロードキャストストームを防ぐために使われる。",
+    "answer": "○",
+    "explanation": "冗長化した経路の一部を論理的に遮断し、必要なときに切り替えます。障害時の切替時間が課題になることがあります。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 14,
+    "format": "true_false",
+    "question": "ping が成功すれば、対象サーバ上のWebサービスが正常に動作していることまで確認できる。",
+    "answer": "×",
+    "explanation": "pingで分かるのはIPレベルの到達性です。サービスの稼働はポートへの接続やHTTP応答で確認します。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 15,
+    "format": "true_false",
+    "question": "サブネット化により、ブロードキャストの影響範囲を小さくできる。",
+    "answer": "○",
+    "explanation": "分割することで無駄なトラフィックを減らし、障害の影響も限定できます。アドレス設計と経路設定が必要になります。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 16,
+    "format": "true_false",
+    "question": "NATは、複数の端末が1つのグローバルIPアドレスを共有して通信することを可能にする。",
+    "answer": "○",
+    "explanation": "ポート番号で対応付けるNAPT（PAT）が広く使われます。外部から内部への接続には別途設定が必要です。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 17,
+    "format": "true_false",
+    "question": "ACL（アクセスコントロールリスト）は、条件に一致する通信の許可・拒否を制御する。",
+    "answer": "○",
+    "explanation": "上から順に評価され、一致した時点で処理が決まります。並び順の設計が意図した制御の鍵になります。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 18,
+    "format": "true_false",
+    "question": "IPv6ではアドレス長が128ビットに拡張され、NATに頼らずアドレスを割り当てやすくなった。",
+    "answer": "○",
+    "explanation": "アドレス枯渇の解消に加え、自動設定の仕組みも整理されています。移行期はIPv4との併用（デュアルスタック）が一般的です。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 19,
+    "format": "true_false",
+    "question": "DHCPサーバが応答しない場合、端末が169.254で始まるアドレスを自分で割り当てることがある。",
+    "answer": "○",
+    "explanation": "APIPA（リンクローカルアドレス）です。このアドレスが見えたら、DHCPに到達できていない可能性を疑います。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 20,
+    "format": "true_false",
+    "question": "無線LANのSSIDを隠す（ステルス化する）ことで、暗号化と同等の安全性が得られる。",
+    "answer": "×",
+    "explanation": "SSIDは通信から観測できるため、隠すだけでは対策になりません。WPA2/WPA3などの暗号化と強固な鍵の運用が必要です。",
+    "isTrial": false
+  }
+]

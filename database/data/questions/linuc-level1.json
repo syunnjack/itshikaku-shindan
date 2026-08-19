@@ -1,0 +1,192 @@
+[
+  {
+    "sortOrder": 1,
+    "format": "true_false",
+    "question": "Linuxのlsコマンドは、ファイルやディレクトリの一覧表示に使う。",
+    "answer": "○",
+    "explanation": "オプション-lや-aを組み合わせることで詳細表示や隠しファイル表示ができます。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 2,
+    "format": "true_false",
+    "question": "chmodは、ファイルやディレクトリの権限を変更するコマンドである。",
+    "answer": "○",
+    "explanation": "読み取り、書き込み、実行権限をユーザー、グループ、その他に対して設定します。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 3,
+    "format": "true_false",
+    "question": "grepは、テキストから指定したパターンを検索するために使う。",
+    "answer": "○",
+    "explanation": "ログ調査や設定ファイル確認で頻繁に使われます。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 4,
+    "format": "true_false",
+    "question": "psコマンドは、実行中のプロセス情報を確認するために使う。",
+    "answer": "○",
+    "explanation": "プロセスIDや実行状態を確認し、killなどと組み合わせることがあります。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 5,
+    "format": "true_false",
+    "question": "rootユーザーは一般ユーザーより権限が低く、システム設定を変更できない。",
+    "answer": "×",
+    "explanation": "rootは最高権限を持つ管理者ユーザーで、操作ミスの影響も大きいため慎重に扱います。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 6,
+    "format": "multiple_choice",
+    "question": "現在の作業ディレクトリを表示するコマンドはどれか。",
+    "answer": "イ",
+    "explanation": "pwdはprint working directoryです。cdは移動、lsは一覧表示、whoamiは実行ユーザーの表示です。",
+    "isTrial": true,
+    "choices": {
+      "ア": "cd",
+      "イ": "pwd",
+      "ウ": "ls",
+      "エ": "whoami"
+    }
+  },
+  {
+    "sortOrder": 7,
+    "format": "multiple_choice",
+    "question": "ファイルの権限を「所有者は読み書き実行、グループとその他は読み取りと実行」に設定するchmodの指定はどれか。",
+    "answer": "ウ",
+    "explanation": "読み4、書き2、実行1の合計で表します。所有者7（4+2+1）、グループ5（4+1）、その他5（4+1）で755です。",
+    "isTrial": true,
+    "choices": {
+      "ア": "chmod 644 file",
+      "イ": "chmod 700 file",
+      "ウ": "chmod 755 file",
+      "エ": "chmod 777 file"
+    }
+  },
+  {
+    "sortOrder": 8,
+    "format": "multiple_choice",
+    "question": "テキストファイルの末尾を継続的に表示し続けるコマンドはどれか。",
+    "answer": "エ",
+    "explanation": "tail -f はログの追記をそのまま追えるため、障害調査でよく使います。headは先頭、catは全体表示です。",
+    "isTrial": true,
+    "choices": {
+      "ア": "head file",
+      "イ": "cat file",
+      "ウ": "less file",
+      "エ": "tail -f file"
+    }
+  },
+  {
+    "sortOrder": 9,
+    "format": "multiple_choice",
+    "question": "実行中プロセスを終了させたいときに使うコマンドはどれか。",
+    "answer": "ア",
+    "explanation": "killはシグナルを送るコマンドです。既定はTERMで、応答しない場合にKILLを使います。プロセスIDはpsやpgrepで調べます。",
+    "isTrial": true,
+    "choices": {
+      "ア": "kill",
+      "イ": "touch",
+      "ウ": "mkdir",
+      "エ": "df"
+    }
+  },
+  {
+    "sortOrder": 10,
+    "format": "multiple_choice",
+    "question": "ディスクの使用状況（空き容量）を確認するコマンドはどれか。",
+    "answer": "ウ",
+    "explanation": "dfはファイルシステム単位の空き容量、duはディレクトリ単位の使用量です。freeはメモリ、topは負荷とプロセスの確認です。",
+    "isTrial": true,
+    "choices": {
+      "ア": "du",
+      "イ": "free",
+      "ウ": "df",
+      "エ": "top"
+    }
+  },
+  {
+    "sortOrder": 11,
+    "format": "true_false",
+    "question": "sudoは、一般ユーザーが限定的に管理者権限のコマンドを実行するための仕組みである。",
+    "answer": "○",
+    "explanation": "誰が何を実行できるかを設定でき、実行内容がログに残ります。常時rootで作業するより安全です。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 12,
+    "format": "true_false",
+    "question": "Linuxではファイル名の大文字と小文字は区別されない。",
+    "answer": "×",
+    "explanation": "一般的なファイルシステムでは区別されます。File.txtとfile.txtは別のファイルとして扱われます。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 13,
+    "format": "true_false",
+    "question": "パイプ（|）は、あるコマンドの出力を次のコマンドの入力として渡す。",
+    "answer": "○",
+    "explanation": "ps aux | grep nginx のように組み合わせて使います。リダイレクト（>）はファイルへの出力で、目的が異なります。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 14,
+    "format": "true_false",
+    "question": "cronは、指定した時刻や間隔でコマンドを自動実行する仕組みである。",
+    "answer": "○",
+    "explanation": "分・時・日・月・曜日で指定します。実行環境の変数やパスが対話時と異なる点に注意が必要です。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 15,
+    "format": "true_false",
+    "question": "rm -r を実行すると、指定したディレクトリとその中身が削除される。",
+    "answer": "○",
+    "explanation": "取り消しはできません。特に管理者権限での実行は、対象パスを声に出して確認するくらい慎重に扱います。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 16,
+    "format": "true_false",
+    "question": "/etc ディレクトリには、主に設定ファイルが置かれる。",
+    "answer": "○",
+    "explanation": "/varは変動データ（ログなど）、/homeは利用者のホーム、/tmpは一時ファイルです。役割で覚えると探しやすくなります。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 17,
+    "format": "true_false",
+    "question": "シンボリックリンクは、別のファイルやディレクトリを指す参照であり、リンク先が消えると参照が壊れる。",
+    "answer": "○",
+    "explanation": "ハードリンクは同じ実体を指すため、元を消しても内容は残ります。用途に応じて使い分けます。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 18,
+    "format": "true_false",
+    "question": "systemctl は、サービスの起動・停止・自動起動設定を行うコマンドである。",
+    "answer": "○",
+    "explanation": "start、stop、status、enable、disable などを使います。statusで直近のログも確認できます。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 19,
+    "format": "true_false",
+    "question": "パッケージ管理コマンド（aptやdnfなど）は、依存関係を解決してソフトウェアを導入できる。",
+    "answer": "○",
+    "explanation": "手動での導入に比べ、更新や削除も管理しやすくなります。導入元（リポジトリ）の信頼性を確認して使います。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 20,
+    "format": "true_false",
+    "question": "grepは、ファイルの内容を書き換えるためのコマンドである。",
+    "answer": "×",
+    "explanation": "grepは検索です。置換はsedなどを使います。目的が違うので混同しないよう整理してください。",
+    "isTrial": false
+  }
+]

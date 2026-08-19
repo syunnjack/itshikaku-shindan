@@ -1,0 +1,192 @@
+[
+  {
+    "sortOrder": 1,
+    "format": "true_false",
+    "question": "Cloud Digital Leaderでは、クラウド技術だけでなくビジネス価値の理解も重視される。",
+    "answer": "○",
+    "explanation": "クラウド導入が業務や組織にもたらす価値を理解することが求められます。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 2,
+    "format": "true_false",
+    "question": "BigQueryは、大規模データ分析に利用できるGoogle Cloudのサービスである。",
+    "answer": "○",
+    "explanation": "サーバレスなデータウェアハウスとして、大量データの分析に使われます。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 3,
+    "format": "true_false",
+    "question": "Google CloudのIAMは、誰がどのリソースに何をできるかを制御する。",
+    "answer": "○",
+    "explanation": "メンバー、ロール、リソースの関係で権限を管理します。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 4,
+    "format": "true_false",
+    "question": "クラウド移行では、すべてのシステムを必ず同じ方法で一括移行しなければならない。",
+    "answer": "×",
+    "explanation": "リホスト、リプラットフォーム、リファクタリングなど、システムごとに戦略を選びます。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 5,
+    "format": "true_false",
+    "question": "Vertex AIは、機械学習モデルの構築や運用を支援するGoogle Cloudのサービスである。",
+    "answer": "○",
+    "explanation": "データ準備、学習、デプロイ、MLOpsの支援に関係します。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 6,
+    "format": "multiple_choice",
+    "question": "BigQueryの説明として、最も適切なものはどれか。",
+    "answer": "イ",
+    "explanation": "BigQueryは分析用のデータウェアハウスで、SQLで大規模データを集計できます。アはCompute Engine、ウはGKE、エはCloud Storageなどが該当します。",
+    "isTrial": true,
+    "choices": {
+      "ア": "仮想マシンを提供するサービス",
+      "イ": "大量データを高速に分析できるデータウェアハウス",
+      "ウ": "コンテナを実行する基盤",
+      "エ": "静的ファイルを配信するサービス"
+    }
+  },
+  {
+    "sortOrder": 7,
+    "format": "multiple_choice",
+    "question": "オンプレミスからクラウドへ移行する際の「リフト＆シフト」の説明として、最も適切なものはどれか。",
+    "answer": "ア",
+    "explanation": "リフト＆シフトは移行を急ぐ場面で選ばれます。移行後にクラウドに合わせて最適化（モダナイズ）する段階へ進むのが一般的です。",
+    "isTrial": true,
+    "choices": {
+      "ア": "構成を大きく変えずに、そのままクラウドへ移す",
+      "イ": "アプリケーションを分割して作り直す",
+      "ウ": "業務そのものを廃止する",
+      "エ": "利用部門ごとに別のクラウドへ分散する"
+    }
+  },
+  {
+    "sortOrder": 8,
+    "format": "multiple_choice",
+    "question": "機械学習の活用場面として、最も適切でないものはどれか。",
+    "answer": "エ",
+    "explanation": "答えが規則で一意に決まる処理は、通常のプログラムで正確に処理すべきです。機械学習は、規則を書き下しにくい判断や予測に向きます。",
+    "isTrial": true,
+    "choices": {
+      "ア": "問い合わせ内容の分類",
+      "イ": "需要の予測",
+      "ウ": "画像からの不良品検出",
+      "エ": "法令で定められた税率の計算"
+    }
+  },
+  {
+    "sortOrder": 9,
+    "format": "multiple_choice",
+    "question": "データのライフサイクル管理を行う目的として、最も適切なものはどれか。",
+    "answer": "ウ",
+    "explanation": "使わなくなったデータを安価な保管先へ移し、不要になれば削除します。保持しすぎは費用と漏えいリスクの両方を増やします。",
+    "isTrial": true,
+    "choices": {
+      "ア": "すべてのデータを永久に保持するため",
+      "イ": "アクセス権限を撤廃するため",
+      "ウ": "利用頻度に応じて保存先を変え、費用とリスクを抑えるため",
+      "エ": "分析処理を止めるため"
+    }
+  },
+  {
+    "sortOrder": 10,
+    "format": "multiple_choice",
+    "question": "クラウド導入で「総保有コスト（TCO）」を比較する際に含めるべき項目として、最も適切なものはどれか。",
+    "answer": "エ",
+    "explanation": "TCOは導入から運用・廃棄までの総額です。オンプレミスでは見えにくい設備維持や運用工数まで含めて比較します。",
+    "isTrial": true,
+    "choices": {
+      "ア": "サーバ購入費だけ",
+      "イ": "通信費だけ",
+      "ウ": "ライセンス費だけ",
+      "エ": "設備、運用、人件費、電力などを含む総額"
+    }
+  },
+  {
+    "sortOrder": 11,
+    "format": "true_false",
+    "question": "Cloud Storageは、静的コンテンツやバックアップの保存に利用できる。",
+    "answer": "○",
+    "explanation": "アクセス頻度に応じたクラスを選べます。公開範囲の設定を誤ると情報漏えいにつながるため、既定は非公開のまま扱います。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 12,
+    "format": "true_false",
+    "question": "デジタルトランスフォーメーションでは、技術導入そのものが目的になる。",
+    "answer": "×",
+    "explanation": "目的は事業や体験の変革であり、技術は手段です。指標を決めて効果を確認する運用が伴わないと、導入だけで終わります。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 13,
+    "format": "true_false",
+    "question": "マネージドサービスを使うと、インフラ運用の負担を下げられる一方、細部の設定自由度は下がることがある。",
+    "answer": "○",
+    "explanation": "運用の委譲と自由度は基本的に交換関係にあります。要件に応じて選択します。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 14,
+    "format": "true_false",
+    "question": "データレイクは、構造化データだけを保存する仕組みである。",
+    "answer": "×",
+    "explanation": "ログや画像などの非構造化データも含めて、生に近い形で蓄積する考え方です。整形済みの分析用はデータウェアハウスが担います。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 15,
+    "format": "true_false",
+    "question": "個人データを分析に用いる場合、匿名化や仮名化などの措置を検討する必要がある。",
+    "answer": "○",
+    "explanation": "利用目的の範囲と、法令上の要件を踏まえて処理します。分析価値と保護のバランスを設計段階で決めます。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 16,
+    "format": "true_false",
+    "question": "クラウドの従量課金では、使わないリソースを停止・削除する運用が費用削減に直結する。",
+    "answer": "○",
+    "explanation": "検証環境の消し忘れは典型的な無駄です。タグ付けと定期的な棚卸しで管理します。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 17,
+    "format": "true_false",
+    "question": "SLO（サービスレベル目標）は、利用者との契約上の罰則を定めたものである。",
+    "answer": "×",
+    "explanation": "罰則を含む契約はSLAです。SLOは内部で目指す目標値で、SLI（測定指標）で計測します。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 18,
+    "format": "true_false",
+    "question": "コンテナは、アプリケーションと必要な依存関係をまとめ、環境差による動作の違いを減らす。",
+    "answer": "○",
+    "explanation": "開発と本番の差を小さくできます。オーケストレーション（Kubernetesなど）で複数コンテナの運用を自動化します。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 19,
+    "format": "true_false",
+    "question": "生成AIを業務に使う場合でも、入力する情報の取り扱いルールを定める必要はない。",
+    "answer": "×",
+    "explanation": "機密情報や個人情報の入力可否、出力の確認手順、責任の所在を定めておく必要があります。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 20,
+    "format": "true_false",
+    "question": "オンプレミスとクラウドを併用する場合、認証基盤を統合すると管理負担を下げられる。",
+    "answer": "○",
+    "explanation": "アカウントが分散すると、退職者の権限削除漏れなどが起きます。統合と棚卸しの仕組みが重要です。",
+    "isTrial": false
+  }
+]

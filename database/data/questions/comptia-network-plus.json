@@ -1,0 +1,192 @@
+[
+  {
+    "sortOrder": 1,
+    "format": "true_false",
+    "question": "DNSは、ドメイン名とIPアドレスの対応付けに利用される。",
+    "answer": "○",
+    "explanation": "名前解決の基本サービスで、Webやメールなど多くの通信で使われます。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 2,
+    "format": "true_false",
+    "question": "DHCPは、IPアドレスなどのネットワーク設定を自動配布できる。",
+    "answer": "○",
+    "explanation": "IPアドレス、サブネットマスク、デフォルトゲートウェイ、DNSなどを配布できます。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 3,
+    "format": "true_false",
+    "question": "pingは、ICMPを利用して疎通確認に使われることがある。",
+    "answer": "○",
+    "explanation": "到達性や応答時間の簡易確認に使えますが、ICMPが遮断される場合もあります。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 4,
+    "format": "true_false",
+    "question": "サブネットマスクは、IPアドレスのネットワーク部とホスト部を識別するために使う。",
+    "answer": "○",
+    "explanation": "同一ネットワーク判定や経路制御の基礎になります。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 5,
+    "format": "true_false",
+    "question": "ルータは、通常MACアドレスだけを見て同一LAN内のフレーム転送を行う装置である。",
+    "answer": "×",
+    "explanation": "ルータは主にIPアドレスを見てネットワーク間の転送を行います。MACでフレーム転送するのはスイッチです。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 6,
+    "format": "multiple_choice",
+    "question": "HTTPSが使用する既定のポート番号はどれか。",
+    "answer": "イ",
+    "explanation": "HTTPSは443、HTTPは80です。21はFTP、3389はRDPで使われます。ポート番号はサービスの識別に使われます。",
+    "isTrial": true,
+    "choices": {
+      "ア": "21",
+      "イ": "443",
+      "ウ": "80",
+      "エ": "3389"
+    }
+  },
+  {
+    "sortOrder": 7,
+    "format": "multiple_choice",
+    "question": "名前解決ができない障害の切り分けとして、最初に確認するものはどれか。",
+    "answer": "ウ",
+    "explanation": "IPアドレス指定で通信できるのに名前でつながらない場合、DNSの設定や到達性を確認します。nslookupやdigが役立ちます。",
+    "isTrial": true,
+    "choices": {
+      "ア": "プリンタの設定",
+      "イ": "ブラウザのブックマーク",
+      "ウ": "端末に設定されたDNSサーバのアドレスと応答",
+      "エ": "画面の解像度"
+    }
+  },
+  {
+    "sortOrder": 8,
+    "format": "multiple_choice",
+    "question": "スイッチとルータの違いとして、最も適切なものはどれか。",
+    "answer": "ア",
+    "explanation": "階層と役割が異なります。同一セグメント内はスイッチ、セグメントをまたぐ通信はルータが担当します。",
+    "isTrial": true,
+    "choices": {
+      "ア": "スイッチは同一ネットワーク内、ルータは異なるネットワーク間の転送を担う",
+      "イ": "スイッチはIP、ルータはMACを見る",
+      "ウ": "どちらも同じ機能で、名称が違うだけである",
+      "エ": "ルータは無線専用の機器である"
+    }
+  },
+  {
+    "sortOrder": 9,
+    "format": "multiple_choice",
+    "question": "ネットワークの遅延や損失を調べるコマンドとして、最も適切なものはどれか。",
+    "answer": "エ",
+    "explanation": "経路上のどこで遅延や損失が起きているかを確認できます。ipconfigは自端末の設定、netstatは接続状態、arpはMAC対応の確認です。",
+    "isTrial": true,
+    "choices": {
+      "ア": "ipconfig",
+      "イ": "netstat",
+      "ウ": "arp",
+      "エ": "traceroute（tracert）"
+    }
+  },
+  {
+    "sortOrder": 10,
+    "format": "multiple_choice",
+    "question": "PoE（Power over Ethernet）の説明として、最も適切なものはどれか。",
+    "answer": "ウ",
+    "explanation": "アクセスポイントやIP電話、監視カメラの設置で使われます。給電能力の上限と、機器の必要電力を確認して設計します。",
+    "isTrial": true,
+    "choices": {
+      "ア": "電力線を使ってデータ通信を行う技術",
+      "イ": "無線で電力を送る技術",
+      "ウ": "LANケーブルでデータと電力を同時に供給する技術",
+      "エ": "停電時に通信を維持する電源装置"
+    }
+  },
+  {
+    "sortOrder": 11,
+    "format": "true_false",
+    "question": "同一ネットワーク内の通信では、宛先MACアドレスの解決にARPが使われる。",
+    "answer": "○",
+    "explanation": "IPアドレスに対応するMACアドレスを問い合わせます。ARPテーブルの確認は切り分けにも使えます。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 12,
+    "format": "true_false",
+    "question": "光ファイバは、電磁ノイズの影響を受けにくく、長距離伝送に向いている。",
+    "answer": "○",
+    "explanation": "電気信号ではなく光を使うためです。曲げや接続部の扱いには注意が必要です。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 13,
+    "format": "true_false",
+    "question": "IPアドレスが重複していても、通信に影響はない。",
+    "answer": "×",
+    "explanation": "同一セグメントでの重複は、通信不能や断続的な障害の原因になります。DHCPと固定割当の管理を分けることが対策です。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 14,
+    "format": "true_false",
+    "question": "VPNは、公衆網を経由しても、暗号化により安全に社内へ接続する仕組みである。",
+    "answer": "○",
+    "explanation": "接続元の認証と経路の暗号化を行います。端末側の安全確保も併せて必要です。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 15,
+    "format": "true_false",
+    "question": "無線LANのチャネルが近隣と重なると、干渉により通信が不安定になることがある。",
+    "answer": "○",
+    "explanation": "混雑状況を調べて重ならないチャネルを選びます。5GHz帯の利用や出力調整も有効です。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 16,
+    "format": "true_false",
+    "question": "ループが発生すると、ブロードキャストが増幅されネットワーク全体が停止することがある。",
+    "answer": "○",
+    "explanation": "ブロードキャストストームです。STPやループ検知機能で防ぎます。誤配線が原因になることが多い障害です。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 17,
+    "format": "true_false",
+    "question": "ネットワーク構成図とIPアドレス管理表は、障害対応の速さに影響しない。",
+    "answer": "×",
+    "explanation": "現状が分からないと切り分けに時間がかかります。変更のたびに更新する運用が重要です。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 18,
+    "format": "true_false",
+    "question": "帯域を大量に使う通信を制御するために、QoSで優先度を設定することがある。",
+    "answer": "○",
+    "explanation": "音声や映像など遅延に弱い通信を優先します。設計しないと、バックアップ通信などが業務通信を圧迫します。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 19,
+    "format": "true_false",
+    "question": "DHCPのリース期間を極端に短くすると、要求が増えてサーバの負荷が上がることがある。",
+    "answer": "○",
+    "explanation": "更新頻度が上がるためです。端末の入れ替わりが多い環境では短め、固定的な環境では長めにするなど、実態に合わせます。",
+    "isTrial": false
+  },
+  {
+    "sortOrder": 20,
+    "format": "true_false",
+    "question": "ケーブルの最大長を超えて配線しても、規格上の通信品質は保証される。",
+    "answer": "×",
+    "explanation": "ツイストペアケーブルは100mが目安です。超えると減衰や誤りが増えます。延長にはスイッチや光への変換を用います。",
+    "isTrial": false
+  }
+]
