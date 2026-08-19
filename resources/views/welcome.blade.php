@@ -6,9 +6,9 @@
 
 @php
     $groups = [
-        'national' => '国家試験 受験者数順 5選',
-        'vendor' => 'ベンダー資格 人気・受験規模順 5選',
-        'private' => '民間IT資格 人気・受験規模順 5選',
+        'national' => '国家試験（5資格）',
+        'vendor' => 'ベンダー資格（5資格）',
+        'private' => '民間IT資格（5資格）',
     ];
 
     $homeStructuredData = [
@@ -35,7 +35,7 @@
 @section('content')
     <h1>IT資格を本試験合格レベルまで固める</h1>
 
-    <p class="lead">受験者数・普及度が大きい資格を優先し、資格ごとの頻出論点を一問一答で即答できる状態にします。</p>
+    <p class="lead">受験者が多い資格を中心に、資格ごとの頻出論点を一問一答で即答できる状態にします。</p>
     <p>無料で5問まで試せます。6問目以降は有料会員として、全資格の問題、回答履歴、間違えた問題の復習を継続できます。</p>
 
     @foreach ($groups as $category => $heading)
@@ -43,7 +43,7 @@
         <div class="cert-grid" aria-label="{{ $heading }}">
             @foreach (collect($certifications)->where('category', $category)->sortBy('category_rank') as $slug => $certification)
                 <a class="cert-card" href="{{ route('certifications.show', ['certification' => $slug]) }}">
-                    <span class="cert-rank">{{ $certification['category_rank'] }}位 / {{ $certification['code'] }}</span>
+                    <span class="cert-rank">{{ $certification['code'] }}</span>
                     <span class="cert-name">{{ $certification['name'] }}</span>
                     <span class="cert-meta">{{ $certification['level'] }}・{{ $certification['description'] }}</span>
                 </a>

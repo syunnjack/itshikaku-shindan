@@ -58,7 +58,11 @@
     <p class="lead">{{ $currentCertification['description'] }}</p>
 
     <div class="notice" role="status">
-        現在の収録問題数: {{ $questionCount }} 問。無料で5問まで回答できます。
+        @if ($questionCount > 0)
+            収録問題数: {{ number_format($questionCount) }} 問。無料で5問まで回答できます。
+        @else
+            この資格の問題は準備中です。ほかの資格には問題があります。
+        @endif
     </div>
 
     <h2>この資格で固めること</h2>

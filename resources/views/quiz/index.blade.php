@@ -41,7 +41,7 @@
     <div class="cert-grid" aria-label="資格切り替え">
         @foreach (collect($certifications)->where('category', $currentCertification['category'])->sortBy('category_rank') as $slug => $certification)
             <a class="cert-card" href="{{ route('quiz.index', ['certification' => $slug]) }}" @if ($slug === $currentSlug) aria-current="page" @endif>
-                <span class="cert-rank">{{ $certification['category_rank'] }}位 / {{ $certification['code'] }}</span>
+                <span class="cert-rank">{{ $certification['code'] }}</span>
                 <span class="cert-name">{{ $certification['short_name'] }}</span>
                 <span class="cert-meta">{{ $certification['level'] }}</span>
             </a>
@@ -94,8 +94,8 @@
                 <a class="button" href="{{ route('quiz.index', ['certification' => $currentSlug]) }}">通常問題へ進む</a>
             </div>
         @else
-            <p class="lead">現在、{{ $currentCertification['name'] }} の問題がありません。</p>
-            <p>データベースにこの資格の問題を追加すると、ここにランダムな本試験対策クイズが表示されます。</p>
+            <p class="lead">{{ $currentCertification['name'] }} の問題は準備中です。</p>
+            <p>ほかの資格には問題があります。下の切り替えから選ぶか、時間をおいてまたお越しください。</p>
         @endif
     @endif
 @endsection
